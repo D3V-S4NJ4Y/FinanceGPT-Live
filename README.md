@@ -757,7 +757,7 @@ This FinanceGPT-Live platform represents a complete, working financial analysis 
   -  User Experience & Interaction Design
 
 #### ** QA & Testing Team**
-- **[Jyoti Kumari]((https://github.com/Jyotikumari622))** - *Quality Assurance Lead*
+- **[Jyoti Kumari](https://github.com/_______)** - *Quality Assurance Lead*
   -  Testing Strategy & Automation
   -  Bug Detection & Performance Testing
   -  Quality Standards & Documentation
