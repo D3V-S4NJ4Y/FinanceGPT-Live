@@ -1,0 +1,34 @@
+/* Advanced Analytics Dashboard Styles */
+
+.risk-bar {
+  width: var(--risk-width, 0%);
+}
+
+.diversification-bar {
+  width: var(--diversification-width, 0%);
+}
+
+.concentration-bar {
+  width: var(--concentration-width, 0%);
+}
+
+.sector-bar {
+  width: var(--sector-width, 0%);
+}
+
+/* Dynamic width setting via CSS custom properties */
+.risk-bar[data-width] {
+  --risk-width: attr(data-width percentage);
+}
+
+.diversification-bar[data-width] {
+  --diversification-width: attr(data-width percentage);
+}
+
+.concentration-bar[data-width] {
+  --concentration-width: attr(data-width percentage);
+}
+
+.sector-bar[data-width] {
+  --sector-width: attr(data-width percentage);
+}
