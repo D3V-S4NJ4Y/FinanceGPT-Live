@@ -739,7 +739,7 @@ This FinanceGPT-Live platform represents a complete, working financial analysis 
 </div>
 
 #### **🚀 Core Development Team**
-- **[Tushar Sahu](https://github.com/_____)** - *Lead Full-Stack Developer*
+- **[Tushar Sahu](https://github.com/sahutushar)** - *Lead Full-Stack Developer*
   - Backend Architecture & API Development
   - Database Design & Optimization
   - System Integration & DevOps
@@ -751,13 +751,13 @@ This FinanceGPT-Live platform represents a complete, working financial analysis 
   - AI Agents System Development
 
 #### ** UI/UX Design Team**
-- **[Shivum Dewangan](https://github.com/_____)** - *Frontend Developer & UI Designer*
+- **[Shivam Dewangan](https://github.com/_____)** - *Frontend Developer & UI Designer*
   -  User Interface Design & Development
   -  Responsive Design & Mobile Optimization
   -  User Experience & Interaction Design
 
 #### ** QA & Testing Team**
-- **[Jyoti Kumari](https://github.com/______)** - *Quality Assurance Lead*
+- **[Jyoti Kumari]((https://github.com/Jyotikumari622))** - *Quality Assurance Lead*
   -  Testing Strategy & Automation
   -  Bug Detection & Performance Testing
   -  Quality Standards & Documentation
