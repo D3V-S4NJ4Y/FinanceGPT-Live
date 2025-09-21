@@ -16,6 +16,15 @@ pydantic==2.5.0
 pydantic-settings==2.1.0
 typing-extensions==4.8.0
 
+#Others Dependencies
+tensorflow==2.15.0
+feedparser==6.0.12
+aiopg==1.4.0
+psycopg2-binary==2.9.9
+textblob==0.17.1
+newspaper3k==0.2.8
+python-dateutil==2.8.2
+
 # Database & Storage
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9

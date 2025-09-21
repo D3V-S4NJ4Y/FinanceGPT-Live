@@ -332,7 +332,7 @@ cd ..
 ```bash
 cp .env.example .env
 ```
-#### Replace YOUR_API_KEY with your actual API keys of environment variables
+#### Replace YOUR_API_KEY with your actual API keys of environment variables*
 
 #### Website: https://www.alphavantage.co/support/#api-key
 ```bash
@@ -378,7 +378,26 @@ npm run build
 
 ## 5️⃣ **Start FinanceGPT-Live**
 
-**Terminal 1: Backend Server**
+**Terminal 1: Frontend Server**
+#### Navigate to root directory
+```bash
+cd FinanceGPT-Live
+```
+```bash
+cd frontend
+```
+
+#### Run the development server
+```bash
+npm run dev
+```
+```bash
+# Expected output:
+# ✅ Local:   http://127.0.0.1:3000/
+# Please Wait while loading market data...
+```
+
+**Terminal 2: Backend Server**
 #### Negivate to root directory
 ```bash
 cd FinanceGPT-Live
@@ -401,25 +420,6 @@ python -m uvicorn main:app --host 127.0.0.1 --port 8001
 # ✅ Enhanced AI agents loaded
 # ✅ Real-time news routes loaded
 #  Server running on http://127.0.0.1:8001
-```
-
-**Terminal 2: Frontend Server**
-#### Navigate to root directory
-```bash
-cd FinanceGPT-Live
-```
-```bash
-cd frontend
-```
-
-#### Run the development server
-```bash
-npm run dev
-```
-```bash
-# Expected output:
-# ✅ Local:   http://127.0.0.1:3000/
-# Please Wait while loading market data...
 ```
 
 #### 6️⃣ **Accessing the Application**
