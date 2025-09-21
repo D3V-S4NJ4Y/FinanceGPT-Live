@@ -1,20 +1,3 @@
-"""
-🚀 Real-Time Financial Data Streams - Pathway Integration
-========================================================
-
-PATHWAY LIVRAI HACKATHON - PRODUCTION DATA STREAMS
-
-This module provides REAL financial data streams (NO MOCK DATA):
-- Live market data from Yahoo Finance API
-- Real-time news feeds from financial sources  
-- SEC filings and earnings reports
-- Economic indicators and events
-- Cryptocurrency data streams
-- Social sentiment analysis
-
-All data is processed in real-time using Pathway's streaming capabilities.
-"""
-
 # Import Pathway with fallback to mock for demonstration
 try:
     import pathway as pw
@@ -74,15 +57,6 @@ class FinancialNewsItem:
     importance_score: float
 
 class RealTimeFinancialDataStreams:
-    """
-    🎯 Real-Time Financial Data Streaming System
-    
-    Provides authentic financial data streams for Pathway LiveAI:
-    - NO mock data - only real market information
-    - Multiple data sources for reliability
-    - Real-time processing and validation
-    - Error handling and failover mechanisms
-    """
     
     def __init__(self):
         self.executor = ThreadPoolExecutor(max_workers=10)
@@ -115,11 +89,11 @@ class RealTimeFinancialDataStreams:
             'sec_filings': 'https://www.sec.gov/rss/litigation/litreleases.xml'
         }
         
-        logger.info("🚀 Initialized Real-Time Financial Data Streams")
+        logger.info(" Initialized Real-Time Financial Data Streams")
     
     def create_market_data_stream(self) -> pw.Table:
         """Create Pathway table for real-time market data"""
-        logger.info("📊 Creating real-time market data stream...")
+        logger.info(" Creating real-time market data stream...")
         
         # Define the schema for market data
         market_schema = pw.schema_from_types(
@@ -161,7 +135,7 @@ class RealTimeFinancialDataStreams:
     
     def create_financial_news_stream(self) -> pw.Table:
         """Create Pathway table for real-time financial news"""
-        logger.info("📰 Creating real-time financial news stream...")
+        logger.info(" Creating real-time financial news stream...")
         
         # Define schema for financial news
         news_schema = pw.schema_from_types(
@@ -197,7 +171,7 @@ class RealTimeFinancialDataStreams:
     
     def create_sec_filings_stream(self) -> pw.Table:
         """Create Pathway table for SEC filings and regulatory documents"""
-        logger.info("📋 Creating SEC filings stream...")
+        logger.info(" Creating SEC filings stream...")
         
         # Monitor directory for new SEC filings and financial reports
         filings_table = pw.io.fs.read(
@@ -264,7 +238,7 @@ class RealTimeFinancialDataStreams:
     
     async def _real_market_data_generator(self) -> AsyncGenerator[Dict[str, Any], None]:
         """Generate real-time market data from Yahoo Finance and Alpha Vantage"""
-        logger.info("🔄 Starting real market data generator...")
+        logger.info(" Starting real market data generator...")
         
         while True:
             try:
@@ -338,7 +312,7 @@ class RealTimeFinancialDataStreams:
     
     async def _real_news_data_generator(self) -> AsyncGenerator[Dict[str, Any], None]:
         """Generate real-time financial news from RSS feeds"""
-        logger.info("🔄 Starting real financial news generator...")
+        logger.info(" Starting real financial news generator...")
         
         while True:
             try:
@@ -413,7 +387,7 @@ class RealTimeFinancialDataStreams:
     
     async def _economic_indicators_generator(self) -> AsyncGenerator[Dict[str, Any], None]:
         """Generate real economic indicators data"""
-        logger.info("🔄 Starting economic indicators generator...")
+        logger.info(" Starting economic indicators generator...")
         
         # Key economic indicators to track
         indicators = {

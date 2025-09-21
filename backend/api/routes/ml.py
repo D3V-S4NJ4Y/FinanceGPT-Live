@@ -1,9 +1,3 @@
-"""
-🤖 Enhanced ML API Routes for FinanceGPT Live
-=============================================
-Real machine learning predictions with trained models
-"""
-
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
@@ -65,12 +59,6 @@ class TrainingResponse(BaseModel):
 # ML Prediction Endpoints
 @router.post("/predict/", response_model=PredictionResponse)
 async def predict_stock_price(request: PredictionRequest):
-    """
-    🤖 Generate ML predictions for stock prices
-    
-    Uses trained RandomForest and GradientBoosting models
-    with real technical indicators as features.
-    """
     try:
         logger.info(f"ML Prediction requested for {request.symbol}")
         
@@ -106,9 +94,6 @@ async def predict_stock_price(request: PredictionRequest):
 # Compatibility endpoint with path parameter
 @router.post("/predict/{symbol}")
 async def predict_stock_price_by_symbol(symbol: str):
-    """
-    🤖 Generate ML predictions for stock prices (path parameter version)
-    """
     try:
         logger.info(f"ML Prediction requested for {symbol}")
         
@@ -155,12 +140,6 @@ async def predict_stock_price_by_symbol(symbol: str):
 
 @router.post("/train/", response_model=TrainingResponse)
 async def train_ml_model(request: TrainingRequest):
-    """
-    🔧 Train ML model for specific stock
-    
-    Trains RandomForest and GradientBoosting models
-    on historical market data with technical indicators.
-    """
     try:
         logger.info(f"ML Training requested for {request.symbol}")
         
@@ -198,9 +177,6 @@ async def train_ml_model(request: TrainingRequest):
 
 @router.get("/model-info/{symbol}")
 async def get_model_info(symbol: str):
-    """
-    📊 Get information about trained ML model
-    """
     try:
         # Check if model exists and get info
         model_info = {
@@ -237,9 +213,6 @@ async def batch_predictions(
     symbols: str,  # Comma-separated symbols
     days_ahead: Optional[int] = 5
 ):
-    """
-    🔢 Generate predictions for multiple symbols (GET method)
-    """
     try:
         symbol_list = [s.strip().upper() for s in symbols.split(",")]
         predictions = {}
@@ -271,9 +244,6 @@ async def batch_predictions(
 async def batch_predictions_post(
     request_data: Dict[str, Any]
 ):
-    """
-    🔢 Generate predictions for multiple symbols (POST method with request body)
-    """
     try:
         symbols = request_data.get("symbols", [])
         days_ahead = request_data.get("days_ahead", 5)
@@ -311,9 +281,6 @@ async def batch_predictions_post(
 
 @router.get("/health")
 async def ml_health_check():
-    """
-    🏥 Check ML system health
-    """
     try:
         # Test prediction capability
         test_result = await ml_predictor.predict("AAPL")

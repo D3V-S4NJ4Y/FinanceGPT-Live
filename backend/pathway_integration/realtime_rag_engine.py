@@ -1,10 +1,10 @@
-"""
-🚀 Pathway Real-Time RAG Engine for FinanceGPT
-==============================================
-Live AI with real-time data streaming and dynamic knowledge updates
-"""
-
-import pathway as pw
+try:
+    import pathway as pw
+except ImportError:
+    try:
+        from .mock_pathway import pw
+    except ImportError:
+        from backend.pathway_pipeline.mock_pathway import pw
 import asyncio
 import json
 from typing import Dict, List, Any, Optional

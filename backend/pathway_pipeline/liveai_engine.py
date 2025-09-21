@@ -1,10 +1,3 @@
-"""
-🚀 LiveAI Engine - Pathway-Inspired Real-Time RAG System
-=====================================================
-Hackathon-Ready Real-Time Financial Intelligence System
-Inspired by Pathway's LiveAI concepts but working on Windows
-"""
-
 import asyncio
 import aiohttp
 import logging
@@ -140,7 +133,7 @@ class LiveAIStreamProcessor:
         self.session = None
         self.executor = ThreadPoolExecutor(max_workers=10)
         
-        logger.info("🚀 LiveAI Stream Processor initialized")
+        logger.info(" LiveAI Stream Processor initialized")
         
     async def start(self):
         """Start the LiveAI streaming system"""
@@ -168,7 +161,7 @@ class LiveAIStreamProcessor:
         if self.session:
             await self.session.close()
             
-        logger.info("⏹️ LiveAI Stream Processor stopped")
+        logger.info(" LiveAI Stream Processor stopped")
         
     async def _start_default_streams(self):
         """Start default financial data streams"""
@@ -208,7 +201,7 @@ class LiveAIStreamProcessor:
             return
             
         self.stream_tasks.append(task)
-        logger.info(f"📡 Started stream: {stream.name}")
+        logger.info(f" Started stream: {stream.name}")
         
     async def _yahoo_finance_stream(self, stream: FinancialStream):
         """Yahoo Finance data streaming"""
@@ -238,7 +231,7 @@ class LiveAIStreamProcessor:
                         # Add to vector store
                         self.vector_store.add_vector(data_point)
                         
-                        logger.debug(f"📊 Market data updated: {symbol} = ${data.get('price', 0)}")
+                        logger.debug(f" Market data updated: {symbol} = ${data.get('price', 0)}")
                         
                 await asyncio.sleep(stream.refresh_rate)
                 
@@ -313,7 +306,7 @@ class LiveAIStreamProcessor:
                             # Add to vector store
                             self.vector_store.add_vector(data_point)
                             
-                            logger.debug(f"📰 News added: {article['title'][:50]}...")
+                            logger.debug(f" News added: {article['title'][:50]}...")
                             
                 await asyncio.sleep(stream.refresh_rate)
                 
@@ -356,7 +349,7 @@ class LiveAIStreamProcessor:
             "last_updated": self.vector_store.last_updated.isoformat(),
             "is_running": self.is_running,
             "streams": {name: {"active": stream.active, "symbols": len(stream.symbols)} 
-                      for name, stream in self.streams.items()}
+            for name, stream in self.streams.items()}
         }
 
 # Global LiveAI instance
@@ -393,17 +386,17 @@ async def hackathon_demo():
         "What are the market trends right now?"
     ]
     
-    print("🚀 LiveAI Hackathon Demo - Real-Time Financial Intelligence")
+    print(" LiveAI Hackathon Demo - Real-Time Financial Intelligence")
     print("=" * 60)
     
     for query in queries:
         result = await engine.query(query, {"max_age_minutes": 5})
-        print(f"\n🔍 Query: {query}")
-        print(f"📊 Response: {result['generated_response']}")
-        print(f"📈 Relevant docs: {result['relevant_docs']}")
+        print(f"\n Query: {query}")
+        print(f" Response: {result['generated_response']}")
+        print(f" Relevant docs: {result['relevant_docs']}")
         
     stats = engine.get_stream_stats()
-    print(f"\n📊 System Stats:")
+    print(f"\n System Stats:")
     print(f"   • Active streams: {stats['active_streams']}")
     print(f"   • Total vectors: {stats['total_vectors']}")  
     print(f"   • Last updated: {stats['last_updated']}")

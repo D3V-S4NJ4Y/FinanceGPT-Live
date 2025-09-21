@@ -1,12 +1,3 @@
-"""
-📰 News Intelligence Agent
-==========================
-
-Advanced AI agent for real-time news analysis and sentiment processing.
-Provides intelligent news monitoring with ML-powered insights.
-
-"""
-
 import asyncio
 import numpy as np
 import pandas as pd
@@ -88,19 +79,6 @@ class NewsAnalysis:
         }
 
 class NewsIntelligenceAgent(BaseAgent):
-    """
-    📰 News Intelligence - Advanced News Analysis Agent
-    
-    Capabilities:
-    - Real-time news monitoring from multiple sources
-    - Advanced sentiment analysis with context awareness
-    - Entity and keyword extraction
-    - News categorization and impact assessment
-    - Trend analysis and pattern recognition
-    - Multi-language support
-    - Fake news detection
-    - Market impact correlation
-    """
     
     def __init__(self):
         super().__init__(
@@ -380,7 +358,7 @@ class NewsIntelligenceAgent(BaseAgent):
         return NewsCategory.GENERAL
     
     def _calculate_impact_score(self, sentiment_score: float, symbols_count: int,
-                              source: str, category: NewsCategory) -> float:
+        source: str, category: NewsCategory) -> float:
         """Calculate potential market impact score"""
         base_impact = abs(sentiment_score)
         
@@ -434,7 +412,7 @@ class NewsIntelligenceAgent(BaseAgent):
         
         # Filter keywords
         keywords = [word for word in words 
-                   if len(word) > 3 and word not in stop_words]
+        if len(word) > 3 and word not in stop_words]
         
         # Count frequency and return top keywords
         from collections import Counter

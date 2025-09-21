@@ -1,12 +1,3 @@
-"""
-🔥 Pathway Real-Time Stream Processor
-====================================
-
-Advanced real-time financial data streaming with Pathway framework.
-Handles multi-source data ingestion, processing, and distribution.
-
-"""
-
 import asyncio
 import pathway as pw
 from typing import Dict, List, Any, Optional, Callable
@@ -37,17 +28,6 @@ class StreamMessage:
     priority: int = 0
 
 class FinanceStreamProcessor:
-    """
-    🚀 High-Performance Real-Time Financial Stream Processor
-    
-    Features:
-    - Multi-source data ingestion (Yahoo Finance, News APIs, etc.)
-    - Real-time data transformation and enrichment
-    - Agent coordination and notification
-    - WebSocket distribution
-    - Advanced caching and performance optimization
-    """
-    
     def __init__(self, websocket_manager=None, agents=None):
         self.websocket_manager = websocket_manager
         self.agents = agents or {}
@@ -85,7 +65,7 @@ class FinanceStreamProcessor:
     
     def _initialize_pathway_tables(self):
         """Initialize Pathway streaming tables"""
-        logger.info("📊 Setting up Pathway streaming tables...")
+        logger.info(" Setting up Pathway streaming tables...")
         
         try:
             # Market data stream
@@ -255,7 +235,7 @@ class FinanceStreamProcessor:
     
     async def start(self):
         """Start the streaming pipeline"""
-        logger.info("🚀 Starting FinanceStreamProcessor...")
+        logger.info(" Starting FinanceStreamProcessor...")
         
         try:
             self.is_running = True
@@ -286,7 +266,7 @@ class FinanceStreamProcessor:
     
     async def stop(self):
         """Stop the streaming pipeline"""
-        logger.info("🛑 Stopping FinanceStreamProcessor...")
+        logger.info(" Stopping FinanceStreamProcessor...")
         
         self.is_running = False
         
@@ -309,7 +289,7 @@ class FinanceStreamProcessor:
             except Exception as e:
                 logger.error(f"❌ Error starting {name} connector: {e}")
     
-    # 📊 Technical Analysis Functions
+    # Technical Analysis Functions
     def _calculate_moving_average(self, prices: List[float], period: int = 20) -> float:
         """Calculate moving average"""
         if len(prices) < period:
@@ -374,7 +354,7 @@ class FinanceStreamProcessor:
         
         return ema
     
-    # 📰 News Analysis Functions
+    # News Analysis Functions
     def _analyze_sentiment(self, text: str) -> float:
         """Analyze sentiment of news text"""
         # Placeholder for advanced sentiment analysis
@@ -427,7 +407,7 @@ class FinanceStreamProcessor:
         
         return min(1.0, base_impact)
     
-    # 🎯 Signal Processing Functions
+    # Signal Processing Functions
     def _calculate_consensus_score(self, signal_row) -> float:
         """Calculate consensus score for aggregated signals"""
         strength_weight = 0.4
@@ -451,7 +431,7 @@ class FinanceStreamProcessor:
         # This would be implemented with proper ranking logic
         return int(signal_row.consensus_score * 100)
     
-    # 🔔 Alert Functions
+    # Alert Functions
     def _determine_alert_type(self, market_row) -> str:
         """Determine type of market alert"""
         if abs(market_row.change_percent) > 10:
@@ -479,7 +459,7 @@ class FinanceStreamProcessor:
         # In production, this would query historical data
         return 1000000
     
-    # 📊 Performance Metrics
+    # Performance Metrics
     def get_performance_metrics(self) -> Dict[str, Any]:
         """Get stream processor performance metrics"""
         uptime = datetime.now() - self.start_time

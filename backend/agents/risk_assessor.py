@@ -1,9 +1,3 @@
-"""
-🚨 Risk Assessor Agent
-======================
-Advanced risk analysis and portfolio assessment
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional
@@ -15,16 +9,6 @@ from .base_agent import BaseAgent
 logger = logging.getLogger(__name__)
 
 class RiskAssessorAgent(BaseAgent):
-    """
-    🎯 AI Risk Assessment Agent
-    
-    Capabilities:
-    - Portfolio risk analysis
-    - Value at Risk (VaR) calculations
-    - Stress testing
-    - Correlation analysis
-    - Risk-adjusted return metrics
-    """
     
     def __init__(self):
         super().__init__(
@@ -47,18 +31,9 @@ class RiskAssessorAgent(BaseAgent):
         self.market_data_cache = {}
         self.correlation_cache = {}
         
-        logger.info("🚨 Risk Assessor Agent initialized")
+        logger.info(" Risk Assessor Agent initialized")
         
     async def analyze_portfolio_risk(self, portfolio: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Comprehensive portfolio risk analysis
-        
-        Args:
-            portfolio: Portfolio holdings and positions
-            
-        Returns:
-            Risk assessment report with VaR, metrics, and recommendations
-        """
         try:
             self.update_status("active", "Analyzing portfolio risk...")
             
@@ -92,16 +67,6 @@ class RiskAssessorAgent(BaseAgent):
             return {"error": str(e), "confidence": 0.0}
             
     async def calculate_var(self, positions: List[Dict[str, Any]], confidence_level: float = 0.95) -> Dict[str, Any]:
-        """
-        Calculate Value at Risk for positions
-        
-        Args:
-            positions: List of positions with symbols and quantities
-            confidence_level: Confidence level for VaR calculation
-            
-        Returns:
-            VaR calculation results
-        """
         try:
             self.update_status("active", f"Calculating VaR at {confidence_level*100}% confidence...")
             
@@ -469,9 +434,6 @@ class RiskAssessorAgent(BaseAgent):
             return "unknown"
     
     async def process_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        🔄 Process incoming risk assessment requests
-        """
         try:
             message_type = message.get('type', 'portfolio_risk')
             

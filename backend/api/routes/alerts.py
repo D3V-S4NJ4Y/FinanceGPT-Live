@@ -1,9 +1,3 @@
-"""
-⚠️ Alerts API Routes
-==================
-Real-time market and system alerts
-"""
-
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List, Dict, Any, Optional
 import logging
@@ -37,9 +31,6 @@ def get_finance_system():
 
 @router.get("/latest")
 async def get_latest_alerts():
-    """
-    🚨 Get latest alerts from all AI agents and monitoring systems
-    """
     try:
         finance_system = get_finance_system()
         all_alerts = []
@@ -167,16 +158,10 @@ async def get_latest_alerts():
 
 @router.get("/historical")
 async def get_historical_alerts(days: int = 7):
-    """
-    📊 Get historical alerts for the specified time period
-    """
     # Implementation similar to /latest but with historical data
     # This would typically pull from a database
     pass
 
 @router.get("/recent")
 async def get_recent_alerts():
-    """
-    🔔 Get recent alerts - alias for /latest for compatibility
-    """
     return await get_latest_alerts()

@@ -1,14 +1,3 @@
-"""
-🔧 FinanceGPT Live Configuration System
-================================    # 🔌 WebSocket Configuration  
-    websocket_max_connections: int = Field(default=1000, env="WEBSOCKET_MAX_CONNECTIONS")
-    websocket_heartbeat_interval: int = Field(default=5, env="WEBSOCKET_HEARTBEAT_INTERVAL")  # Super fast heartbeat!==
-
-Advanced configuration management for enterprise-grade deployment
-with environment-specific settings, secrets management, and performance tuning.
-
-"""
-
 import os
 from typing import List, Optional, Dict, Any
 from pydantic_settings import BaseSettings
@@ -19,48 +8,36 @@ import logging
 logger = logging.getLogger(__name__)
 
 class Settings(BaseSettings):
-    """
-    🎯 Comprehensive Application Settings
-    
-    Handles all configuration aspects:
-    - API keys and secrets
-    - Database connections
-    - Performance parameters
-    - Feature flags
-    - Security settings
-    """
-    
-    # 🏷️ Application Info
     app_name: str = "FinanceGPT Live"
     app_version: str = "1.0.0"
     debug: bool = Field(default=False, env="DEBUG")
     environment: str = Field(default="development", env="ENVIRONMENT")
     
-    # 🌐 Server Configuration
+    # Server Configuration
     host: str = Field(default="0.0.0.0", env="HOST")
     port: int = Field(default=8001, env="PORT")  # Updated to 8001
     reload: bool = Field(default=True, env="RELOAD")
     workers: int = Field(default=4, env="WORKERS")
     
-    # 🔐 Security Settings
+    # Security Settings
     secret_key: str = Field(..., env="SECRET_KEY")
     algorithm: str = Field(default="HS256", env="ALGORITHM")
     access_token_expire_minutes: int = Field(default=30, env="ACCESS_TOKEN_EXPIRE_MINUTES")
     
-    # 🤖 AI/LLM Configuration
+    # AI/LLM Configuration
     openai_api_key: Optional[str] = Field(None, env="OPENAI_API_KEY")
     anthropic_api_key: Optional[str] = Field(None, env="ANTHROPIC_API_KEY")
     default_model: str = Field(default="gpt-4-turbo-preview", env="DEFAULT_MODEL")
     max_tokens: int = Field(default=4096, env="MAX_TOKENS")
     temperature: float = Field(default=0.7, env="TEMPERATURE")
     
-    # 📊 Financial Data APIs
+    # Financial Data APIs
     alpha_vantage_key: Optional[str] = Field(None, env="ALPHA_VANTAGE_KEY")
     finnhub_key: Optional[str] = Field(None, env="FINNHUB_KEY")
     polygon_key: Optional[str] = Field(None, env="POLYGON_KEY")
     news_api_key: Optional[str] = Field(None, env="NEWS_API_KEY")
     
-    # 🗄️ Database Configuration
+    # Database Configuration
     database_url: str = Field(
         default="sqlite+aiosqlite:///./financegpt.db",
         env="DATABASE_URL"
@@ -68,52 +45,52 @@ class Settings(BaseSettings):
     database_pool_size: int = Field(default=20, env="DATABASE_POOL_SIZE")
     database_max_overflow: int = Field(default=30, env="DATABASE_MAX_OVERFLOW")
     
-    # 📦 Redis/Cache Configuration
+    # Redis/Cache Configuration
     redis_url: str = Field(default="redis://localhost:6379", env="REDIS_URL")
     cache_ttl: int = Field(default=3600, env="CACHE_TTL")  # 1 hour
     
-    # 🔥 Pathway Configuration
+    # Pathway Configuration
     pathway_license_key: Optional[str] = Field(None, env="PATHWAY_LICENSE_KEY")
     pathway_threads: int = Field(default=4, env="PATHWAY_THREADS")
     pathway_persistence_dir: str = Field(default="./pathway_data", env="PATHWAY_PERSISTENCE_DIR")
     
-    # ⚡ WebSocket Configuration
+    # WebSocket Configuration
     websocket_max_connections: int = Field(default=1000, env="WEBSOCKET_MAX_CONNECTIONS")
     websocket_heartbeat_interval: int = Field(default=30, env="WEBSOCKET_HEARTBEAT_INTERVAL")
     
-    # 📈 Market Data Configuration
+    # Market Data Configuration
     market_data_update_interval: int = Field(default=2, env="MARKET_DATA_UPDATE_INTERVAL")  # seconds - super fast updates!
     max_symbols_per_request: int = Field(default=100, env="MAX_SYMBOLS_PER_REQUEST")
     historical_data_days: int = Field(default=365, env="HISTORICAL_DATA_DAYS")
     
-    # 🤖 Agent Configuration
+    # Agent Configuration
     agent_concurrency_limit: int = Field(default=10, env="AGENT_CONCURRENCY_LIMIT")
     agent_timeout_seconds: int = Field(default=30, env="AGENT_TIMEOUT_SECONDS")
     max_agent_retries: int = Field(default=3, env="MAX_AGENT_RETRIES")
     
-    # 📊 Analytics Configuration
+    # Analytics Configuration
     analytics_batch_size: int = Field(default=1000, env="ANALYTICS_BATCH_SIZE")
     analytics_processing_interval: int = Field(default=60, env="ANALYTICS_PROCESSING_INTERVAL")
     
-    # 🛡️ Rate Limiting
+    # Rate Limiting
     rate_limit_requests_per_minute: int = Field(default=1000, env="RATE_LIMIT_RPM")
     rate_limit_burst_size: int = Field(default=100, env="RATE_LIMIT_BURST")
     
-    # 📱 Frontend Configuration
+    # Frontend Configuration
     frontend_url: str = Field(default="http://localhost:3000", env="FRONTEND_URL")
     cors_origins: List[str] = Field(
         default=["http://localhost:3000", "http://localhost:5173"],
         env="CORS_ORIGINS"
     )
     
-    # 🔍 Logging Configuration
+    # Logging Configuration
     log_level: str = Field(default="INFO", env="LOG_LEVEL")
     log_format: str = Field(
         default="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         env="LOG_FORMAT"
     )
     
-    # 🧪 Feature Flags
+    # Feature Flags
     enable_real_time_streaming: bool = Field(default=True, env="ENABLE_REAL_TIME_STREAMING")
     enable_advanced_analytics: bool = Field(default=True, env="ENABLE_ADVANCED_ANALYTICS")
     enable_ai_agents: bool = Field(default=True, env="ENABLE_AI_AGENTS")
@@ -121,16 +98,16 @@ class Settings(BaseSettings):
     enable_risk_monitoring: bool = Field(default=True, env="ENABLE_RISK_MONITORING")
     enable_news_sentiment: bool = Field(default=True, env="ENABLE_NEWS_SENTIMENT")
     
-    # 🚀 Performance Tuning
+    # Performance Tuning
     async_pool_size: int = Field(default=100, env="ASYNC_POOL_SIZE")
     connection_timeout: int = Field(default=30, env="CONNECTION_TIMEOUT")
     request_timeout: int = Field(default=60, env="REQUEST_TIMEOUT")
     
-    # 📊 Data Storage
+    # Data Storage
     data_retention_days: int = Field(default=30, env="DATA_RETENTION_DAYS")
     backup_interval_hours: int = Field(default=6, env="BACKUP_INTERVAL_HOURS")
     
-    # 🔐 Security Headers
+    # Security Headers
     security_headers: Dict[str, str] = {
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY",
@@ -210,18 +187,13 @@ class Settings(BaseSettings):
 
 @lru_cache()
 def get_settings() -> Settings:
-    """
-    🔧 Get cached application settings
-    
-    Uses LRU cache to ensure settings are loaded once and reused.
-    """
     logger.info("Loading application settings...")
     return Settings()
 
 # Global settings instance
 settings = get_settings()
 
-# 🚀 Export commonly used configurations
+# Export commonly used configurations
 DATABASE_CONFIG = settings.get_database_config()
 REDIS_CONFIG = settings.get_redis_config()
 AI_CONFIG = settings.get_ai_config()

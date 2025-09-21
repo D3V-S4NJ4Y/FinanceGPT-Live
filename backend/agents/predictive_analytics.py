@@ -1,20 +1,4 @@
 #!/usr/bin/env python3
-"""
-🤖 Predictive Analytics Agent
-============================
-
-Advanced AI agent that uses machine learning to predict market movements.
-Features multiple algorithms, ensemble methods, and deep learning models.
-
-Key Features:
-- LSTM Neural Networks for time series prediction
-- Random Forest ensemble models
-- Real-time model training and adaptation
-- Multi-timeframe predictions (1min, 5min, 1hour, 1day)
-- Confidence intervals and uncertainty quantification
-- Model performance tracking and selection
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional, Tuple
@@ -43,6 +27,9 @@ try:
     from tensorflow.keras import layers
     TF_AVAILABLE = True
 except ImportError:
+    tf = None
+    keras = None
+    layers = None
     TF_AVAILABLE = False
     logging.warning("⚠️ TensorFlow not available - using basic ML models")
 
@@ -89,20 +76,6 @@ class ModelPerformance:
     last_updated: datetime
 
 class PredictiveAnalyticsAgent(BaseAgent):
-    """
-    🎯 Advanced Predictive Analytics Agent
-    
-    Uses cutting-edge machine learning and deep learning models to predict
-    market movements with high accuracy and confidence scoring.
-    
-    Capabilities:
-    - Multiple ML algorithms (LSTM, Random Forest, Gradient Boosting)
-    - Real-time model training and adaptation
-    - Multi-timeframe predictions
-    - Ensemble model voting
-    - Feature engineering from market data
-    - Performance tracking and model selection
-    """
     
     def __init__(self):
         super().__init__(
@@ -213,9 +186,9 @@ class PredictiveAnalyticsAgent(BaseAgent):
             }
     
     async def predict_price(self, 
-                          symbol: str, 
-                          timeframe: PredictionTimeframe,
-                          horizon_minutes: int) -> Optional[PredictionResult]:
+        symbol: str, 
+        timeframe: PredictionTimeframe,
+        horizon_minutes: int) -> Optional[PredictionResult]:
         """🔮 Generate price prediction using ensemble of ML models"""
         
         try:
@@ -254,10 +227,10 @@ class PredictiveAnalyticsAgent(BaseAgent):
             return None
     
     async def _ensemble_predict(self, 
-                              symbol: str,
-                              timeframe: PredictionTimeframe,
-                              features: pd.DataFrame,
-                              horizon_minutes: int) -> PredictionResult:
+        symbol: str,
+        timeframe: PredictionTimeframe,
+        features: pd.DataFrame,
+        horizon_minutes: int) -> PredictionResult:
         """Generate ensemble prediction from multiple models"""
         
         predictions = []
@@ -382,10 +355,10 @@ class PredictiveAnalyticsAgent(BaseAgent):
             return None, 0.0
     
     async def _train_model(self, 
-                         model_type: ModelType,
-                         symbol: str,
-                         timeframe: PredictionTimeframe,
-                         X: np.ndarray) -> bool:
+        model_type: ModelType,
+        symbol: str,
+        timeframe: PredictionTimeframe,
+        X: np.ndarray) -> bool:
         """Train a specific model"""
         
         if not ML_AVAILABLE:
@@ -487,10 +460,10 @@ class PredictiveAnalyticsAgent(BaseAgent):
             return False
     
     async def _train_lstm_model(self, 
-                              X_train: np.ndarray, 
-                              y_train: np.ndarray,
-                              X_val: np.ndarray, 
-                              y_val: np.ndarray) -> Any:
+        X_train: np.ndarray, 
+        y_train: np.ndarray,
+        X_val: np.ndarray, 
+        y_val: np.ndarray) -> Any:
         """Train LSTM neural network model"""
         
         if not TF_AVAILABLE:
@@ -642,9 +615,9 @@ class PredictiveAnalyticsAgent(BaseAgent):
         return upper_band, lower_band
     
     async def _get_historical_data(self, 
-                                 symbol: str, 
-                                 timeframe: PredictionTimeframe, 
-                                 limit: int) -> pd.DataFrame:
+        symbol: str, 
+        timeframe: PredictionTimeframe, 
+        limit: int) -> pd.DataFrame:
         """Get historical market data for training/prediction"""
         
         # Fetch real market data using yfinance
@@ -743,7 +716,7 @@ class PredictiveAnalyticsAgent(BaseAgent):
         """Initialize models for a specific timeframe"""
         # This would be called during startup to pre-train models
         # For now, we'll train models on-demand
-        logger.info(f"📊 Models for {timeframe.value} will be trained on-demand")
+        logger.info(f" Models for {timeframe.value} will be trained on-demand")
     
     async def _handle_batch_prediction(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """Handle batch prediction requests"""

@@ -1,9 +1,3 @@
-"""
-📈 Technical Analysis API Routes
-===============================
-Real-time technical analysis with authentic market data
-"""
-
 from fastapi import APIRouter, HTTPException, Query
 from typing import Dict, List, Any, Optional
 import yfinance as yf
@@ -22,15 +16,6 @@ async def get_technical_analysis(
     symbol: str,
     period: str = Query("3mo", description="Data period for analysis")
 ):
-    """
-    🎯 Comprehensive Technical Analysis with Real Market Data
-    
-    Returns authentic technical indicators calculated from live market data:
-    - RSI, MACD, Bollinger Bands, Moving Averages
-    - Support/Resistance levels
-    - Chart patterns and signals
-    - Volume analysis
-    """
     try:
         symbol = symbol.upper()
         ticker = yf.Ticker(symbol)
@@ -212,9 +197,6 @@ async def get_batch_technical_analysis(
     symbols: str = Query(..., description="Comma-separated symbols"),
     period: str = Query("3mo", description="Data period for analysis")
 ):
-    """
-    🎯 Batch Technical Analysis for Multiple Symbols
-    """
     try:
         symbol_list = [s.strip().upper() for s in symbols.split(',')]
         results = {}
@@ -246,11 +228,6 @@ async def technical_screener(
     criteria: str = Query("oversold", description="Screening criteria: oversold, overbought, breakout, breakdown"),
     limit: int = Query(20, description="Maximum results to return")
 ):
-    """
-    🔍 Technical Analysis Screener
-    
-    Find stocks meeting specific technical criteria
-    """
     try:
         # Popular symbols to screen
         screening_symbols = [
@@ -276,21 +253,21 @@ async def technical_screener(
                 
                 if criteria.lower() == "oversold":
                     meets_criteria = (indicators["rsi"] < 30 or 
-                                    analysis["current_price"] < indicators["bollinger_lower"])
+                    analysis["current_price"] < indicators["bollinger_lower"])
                 
                 elif criteria.lower() == "overbought":
                     meets_criteria = (indicators["rsi"] > 70 or 
-                                    analysis["current_price"] > indicators["bollinger_upper"])
+                    analysis["current_price"] > indicators["bollinger_upper"])
                 
                 elif criteria.lower() == "breakout":
                     meets_criteria = (analysis["pattern_detected"] == "Breakout" or
-                                    (analysis["current_price"] > indicators["sma_20"] and
-                                     indicators["volume_ratio"] > 1.5))
+                    (analysis["current_price"] > indicators["sma_20"] and
+                    indicators["volume_ratio"] > 1.5))
                 
                 elif criteria.lower() == "breakdown":
                     meets_criteria = (analysis["pattern_detected"] == "Breakdown" or
-                                    (analysis["current_price"] < indicators["sma_20"] and
-                                     indicators["volume_ratio"] > 1.5))
+                    (analysis["current_price"] < indicators["sma_20"] and
+                    indicators["volume_ratio"] > 1.5))
                 
                 if meets_criteria:
                     screened_results.append({

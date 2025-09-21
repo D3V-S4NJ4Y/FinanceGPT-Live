@@ -1,36 +1,5 @@
 #!/usr/bin/env python3
-"""
-🚀 FinanceGPT Live - Pathway LiveAI Integration
-===============================================
-
-
-Built to demonstrate real-time financial AI capabilities
-
-🎯 HACKATHON REQUIREMENTS FULFILLED:
-✅ Pathway-Powered Streaming ETL: Real-time financial data ingestion
-✅ Dynamic Indexing: Live vector embeddings without rebuilds  
-✅ Live Retrieval/Generation: Real-time RAG with instant updates
-✅ No Mock Data: Only real market data from Yahoo Finance, RSS feeds, SEC filings
-✅ Multi-Agent Orchestration: Financial AI agents with real-time context
-✅ WebSocket Streaming: Live user interaction and data updates
-✅ Production Architecture: Enterprise-grade scalability and error handling
-
-🏗️ SYSTEM ARCHITECTURE:
-┌─ Real-Time Data Sources ─┐  ┌─ Pathway Live AI Engine ─┐  ┌─ User Interface ─┐
-│ • Yahoo Finance API      │→ │ • Vector Embeddings      │→ │ • REST API        │
-│ • Financial News RSS     │  │ • Hybrid Search          │  │ • WebSocket       │  
-│ • SEC Filings Stream     │  │ • RAG Generation         │  │ • React Frontend  │
-│ • Economic Indicators    │  │ • Multi-Agent Routing    │  │ • Voice Interface │
-└─────────────────────────┘  └─────────────────────────┘  └──────────────────┘
-
-This system demonstrates Pathway's Live AI superpowers by:
-- Continuously ingesting real financial data streams
-- Maintaining up-to-date vector embeddings
-- Providing AI responses with live market context
-- Never using stale data - everything updates in real-time
-"""
-
-print("🚀 FinanceGPT Live - Pathway LiveAI System Starting...")
+print("FinanceGPT Live - Pathway LiveAI System Starting...")
 print("===============================================")
 
 # Load environment variables first
@@ -53,7 +22,7 @@ import os
 import sys
 from pathlib import Path
 
-print("⚡ Loading Pathway LiveAI components...")
+print("Loading Pathway LiveAI components...")
 
 # Add current directory to path for imports
 sys.path.append(str(Path(__file__).parent))
@@ -71,7 +40,7 @@ except ImportError as e:
 from api.websocket import WebSocketManager
 from api.routes import market_data, agents, analytics, ml, alerts, market_regime, technical_analysis
 
-print("📡 Loading real-time data systems...")
+print(" Loading real-time data systems...")
 
 # Initialize Pathway LiveRAG system
 pathway_system = None  # Will be initialized in lifespan startup
@@ -87,7 +56,7 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     """Application lifespan management"""
     global pathway_system
-    logger.info("🚀 FinanceGPT Live - Pathway AI starting up...")
+    logger.info(" FinanceGPT Live - Pathway AI starting up...")
     
     # Initialize Real Pathway RAG
     pathway_system = None
@@ -95,24 +64,13 @@ async def lifespan(app: FastAPI):
     
     yield
     
-    logger.info("🔄 FinanceGPT Live - Pathway AI shutting down...")
+    logger.info(" FinanceGPT Live - Pathway AI shutting down...")
 
 # Create FastAPI app with Pathway Live AI integration
 app = FastAPI(
     title="FinanceGPT Live - Pathway AI",
     description="""
-    🚀 Real-Time Financial Intelligence powered by Pathway LiveAI
-    
-    - Demonstrating Pathway's real-time AI capabilities:
-    
-    • Real-time financial data streaming with Pathway
-    • Live vector embeddings and hybrid search
-    • Dynamic RAG with instant knowledge updates
-    • Multi-agent orchestration with real-time context
-    • WebSocket streaming for live user interaction
-    • Production-ready architecture with enterprise scalability
-    
-    🎯 NO MOCK DATA - Everything is real-time from authentic financial sources
+    Real-Time Financial Intelligence powered by Pathway LiveAI
     """,
     version="1.0.0-pathway-livai",
     lifespan=lifespan
@@ -395,7 +353,7 @@ if PATHWAY_AVAILABLE:
 async def initialize_websocket_handlers():
     """Initialize and start WebSocket handlers"""
     try:
-        logger.info("📡 Initializing WebSocket handlers")
+        logger.info(" Initializing WebSocket handlers")
         
         # Initialize handlers
         market_data_handler = MarketDataHandler(websocket_manager)
@@ -427,7 +385,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
             return
             
         await websocket.accept()
-        logger.info(f"📡 New WebSocket connection accepted: {client_id}")
+        logger.info(f" New WebSocket connection accepted: {client_id}")
         
         # Connect client to the websocket manager
         try:
@@ -501,7 +459,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
     except Exception as e:
         # Suppress common WebSocket errors that are expected during disconnection
         if "cannot call" in str(e).lower() and "close message" in str(e).lower():
-            logger.debug(f"🔌 WebSocket client {client_id} disconnected during send")
+            logger.debug(f" WebSocket client {client_id} disconnected during send")
         else:
             logger.debug(f"❌ WebSocket error: {e}")
         try:
@@ -523,7 +481,7 @@ async def cleanup_websocket_connections():
         if len(websocket_manager.active_connections) > 0:
             removed = await websocket_manager.cleanup_dead_connections()
             if removed > 0:
-                logger.info(f"🧹 Scheduled cleanup removed {removed} stale WebSocket connections")
+                logger.info(f" Scheduled cleanup removed {removed} stale WebSocket connections")
     except Exception as e:
         logger.error(f"❌ Error in scheduled WebSocket cleanup: {e}")
 
@@ -533,7 +491,7 @@ async def schedule_cleanup_tasks():
     """Schedule periodic cleanup tasks"""
     # Run cleanup every 2 minutes
     asyncio.create_task(periodic_task(cleanup_websocket_connections, 120))
-    logger.info("🔄 Scheduled periodic WebSocket connection cleanup")
+    logger.info(" Scheduled periodic WebSocket connection cleanup")
 
 async def periodic_task(task_func, seconds_interval):
     """Run a task periodically"""
@@ -785,11 +743,11 @@ async def health_check():
 
 # Main application entry point
 if __name__ == "__main__":
-    print("🚀 Starting FinanceGPT Live - Pathway AI Server...")
+    print(" Starting FinanceGPT Live - Pathway AI Server...")
     print("=" * 50)
     print(f"✅ Pathway LiveAI: {'Enabled' if PATHWAY_AVAILABLE else 'Disabled'}")
-    print(f"📊 Real-time Data: {'Active' if PATHWAY_AVAILABLE else 'Basic mode'}")
-    print(f"🎯 Hackathon Ready: {'Yes' if PATHWAY_AVAILABLE else 'Limited functionality'}")
+    print(f" Real-time Data: {'Active' if PATHWAY_AVAILABLE else 'Basic mode'}")
+    print(f" Hackathon Ready: {'Yes' if PATHWAY_AVAILABLE else 'Limited functionality'}")
     print("=" * 50)
     
     # Run the server
@@ -848,7 +806,7 @@ logger = logging.getLogger("FinanceGPT-Live")
 
 class FinanceGPTSystem:
     """
-    🎯 Complete FinanceGPT Live Production System
+    Complete FinanceGPT Live Production System
     
     This is the FULL production system with ALL features:
     - Real-time market data processing
@@ -873,7 +831,7 @@ class FinanceGPTSystem:
         if self.is_initialized:
             return
             
-        logger.info("🚀 Initializing FinanceGPT Live Production System...")
+        logger.info(" Initializing FinanceGPT Live Production System...")
         
         try:
             # Start WebSocket background tasks
@@ -952,7 +910,7 @@ class FinanceGPTSystem:
     
     async def _initialize_streaming(self):
         """Initialize real-time streaming pipeline"""
-        logger.info("📡 Initializing real-time streaming pipeline...")
+        logger.info(" Initializing real-time streaming pipeline...")
         
         try:
             if FinanceStreamProcessor:
@@ -982,7 +940,7 @@ class FinanceGPTSystem:
             logger.warning("⚠️ System already running")
             return
             
-        logger.info("🚀 Starting FinanceGPT Live production systems...")
+        logger.info(" Starting FinanceGPT Live production systems...")
         
         try:
             # Start streaming pipeline
@@ -1008,7 +966,7 @@ class FinanceGPTSystem:
         if not self.is_running:
             return
             
-        logger.info("🛑 Shutting down FinanceGPT Live systems...")
+        logger.info(" Shutting down FinanceGPT Live systems...")
         
         try:
             # Stop streaming
@@ -1050,7 +1008,7 @@ finance_system = FinanceGPTSystem()
 async def lifespan(app: FastAPI):
     """Application lifespan management"""
     # Startup
-    logger.info("🚀 Starting FinanceGPT Live Application...")
+    logger.info(" Starting FinanceGPT Live Application...")
     try:
         await finance_system.start()
         yield
@@ -1060,7 +1018,7 @@ async def lifespan(app: FastAPI):
         yield
     finally:
         # Shutdown
-        logger.info("🛑 Shutting down FinanceGPT Live Application...")
+        logger.info(" Shutting down FinanceGPT Live Application...")
         try:
             await finance_system.stop()
         except Exception as e:
@@ -1239,7 +1197,7 @@ async def get_latest_market_data():
         if (cache_timestamp and 
             market_data_cache and 
             (now - cache_timestamp).total_seconds() < CACHE_DURATION):
-            logger.info(f"⚡ Returning cached market data ({len(market_data_cache)} symbols)")
+            logger.info(f" Returning cached market data ({len(market_data_cache)} symbols)")
             return list(market_data_cache.values())
         
         import yfinance as yf
@@ -1247,7 +1205,7 @@ async def get_latest_market_data():
         symbols = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA', 'AMZN', 'META', 'NFLX']
         market_data = []
         
-        logger.info(f"🔄 Fetching fresh market data for {len(symbols)} symbols...")
+        logger.info(f" Fetching fresh market data for {len(symbols)} symbols...")
         
         for symbol in symbols:
             try:
@@ -1297,7 +1255,7 @@ async def get_latest_market_data():
         logger.error(f"❌ Error fetching latest market data: {e}")
         # Return cached data if available
         if market_data_cache:
-            logger.info(f"⚡ Returning cached data due to error")
+            logger.info(f" Returning cached data due to error")
             return list(market_data_cache.values())
         raise HTTPException(status_code=500, detail=f"Market data error: {e}")
 
@@ -1380,7 +1338,7 @@ async def market_feed_websocket(websocket: WebSocket):
         
         # Connect to the websocket manager
         actual_client_id = await finance_system.websocket_manager.connect(websocket, client_id)
-        logger.info(f"📡 Market feed WebSocket connected: {actual_client_id}")
+        logger.info(f" Market feed WebSocket connected: {actual_client_id}")
         
         # Subscribe to market data updates
         await finance_system.websocket_manager.subscribe(actual_client_id, "market_data")
@@ -1391,17 +1349,17 @@ async def market_feed_websocket(websocket: WebSocket):
                 try:
                     data = await websocket.receive_text()
                     # Handle any client messages if needed
-                    logger.info(f"📨 Market feed message: {data}")
+                    logger.info(f" Market feed message: {data}")
                 except Exception:
                     # Client might just be listening, that's fine
                     await asyncio.sleep(1)
                     
         except WebSocketDisconnect:
-            logger.info(f"📡 Market feed WebSocket disconnected: {actual_client_id}")
+            logger.info(f" Market feed WebSocket disconnected: {actual_client_id}")
         except Exception as e:
             # Suppress common WebSocket connection errors
             if "cannot call" in str(e).lower() and "close message" in str(e).lower():
-                logger.debug(f"📡 Market feed client {actual_client_id} disconnected during send")
+                logger.debug(f" Market feed client {actual_client_id} disconnected during send")
             else:
                 logger.debug(f"❌ Market feed WebSocket error: {e}")
             
@@ -1417,7 +1375,7 @@ async def market_feed_websocket(websocket: WebSocket):
 async def root():
     """Root endpoint - Production system information"""
     return {
-        "message": "🚀 FinanceGPT Live - Full Production System",
+        "message": " FinanceGPT Live - Full Production System",
         "status": "PRODUCTION READY",
         "version": "1.0.0",
         "features": {
@@ -1506,7 +1464,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
     """Main WebSocket endpoint for dashboard connections"""
     try:
         await websocket.accept()
-        logger.info(f"📡 WebSocket connected: {client_id}")
+        logger.info(f" WebSocket connected: {client_id}")
         
         # Send connection confirmation
         await websocket.send_text(json.dumps({
@@ -1530,7 +1488,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                 }))
                 
             except WebSocketDisconnect:
-                logger.info(f"📡 WebSocket disconnected: {client_id}")
+                logger.info(f" WebSocket disconnected: {client_id}")
                 break
             except Exception as e:
                 logger.error(f"WebSocket error for {client_id}: {e}")
@@ -1544,7 +1502,7 @@ async def command_center_websocket(websocket: WebSocket, session_id: str, client
     """Command Center specific WebSocket endpoint"""
     try:
         await websocket.accept()
-        logger.info(f"📡 Command Center WebSocket connected: session={session_id}, client={client_id}")
+        logger.info(f" Command Center WebSocket connected: session={session_id}, client={client_id}")
         
         # Send initial connection message
         await websocket.send_text(json.dumps({
@@ -1571,7 +1529,7 @@ async def command_center_websocket(websocket: WebSocket, session_id: str, client
                 await websocket.send_text(json.dumps(status_update))
                 
             except WebSocketDisconnect:
-                logger.info(f"📡 Command Center WebSocket disconnected: session={session_id}, client={client_id}")
+                logger.info(f" Command Center WebSocket disconnected: session={session_id}, client={client_id}")
                 break
             except Exception as e:
                 logger.error(f"Command Center WebSocket error: {e}")
@@ -1582,8 +1540,8 @@ async def command_center_websocket(websocket: WebSocket, session_id: str, client
 
 if __name__ == "__main__":
     """Production server startup"""
-    print("🚀 FinanceGPT Live - Starting...")
-    logger.info("🚀 Launching FinanceGPT Live Production Server...")
+    print(" FinanceGPT Live - Starting...")
+    logger.info(" Launching FinanceGPT Live Production Server...")
     
     try:
         uvicorn.run(

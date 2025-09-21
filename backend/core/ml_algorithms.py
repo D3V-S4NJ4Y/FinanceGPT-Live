@@ -1,9 +1,3 @@
-"""
-🧠 Advanced ML Algorithms for Financial Analysis
-===============================================
-Real-time machine learning models for market prediction and analysis
-"""
-
 import numpy as np
 import pandas as pd
 from typing import Dict, List, Tuple, Any

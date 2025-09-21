@@ -1,11 +1,3 @@
-"""
-🤖 Base Agent Class
-===================
-
-Abstract base class for all FinanceGPT AI agents.
-Provides common functionality and standardized interface.
-"""
-
 from abc import ABC, abstractmethod
 from typing import Dict, Any, List, Optional
 from datetime import datetime
@@ -25,20 +17,6 @@ class AgentCapability:
     output_types: List[str]
 
 class BaseAgent(ABC):
-    """
-    🎯 Abstract Base Agent Class
-    
-    All FinanceGPT agents inherit from this base class to ensure
-    consistent interface and behavior.
-    
-    Features:
-    - Standardized message processing
-    - Health monitoring
-    - Performance tracking
-    - Error handling
-    - Logging integration
-    """
-    
     def __init__(self, name: str, description: str, version: str = "1.0.0"):
         self.name = name
         self.description = description
@@ -57,13 +35,6 @@ class BaseAgent(ABC):
         logger.info(f"✅ {self.name} agent initialized")
     
     def update_status(self, status: str, message: str = ""):
-        """
-        Update agent status for monitoring
-        
-        Args:
-            status: Status string (active, idle, error)
-            message: Optional status message
-        """
         self.last_activity = datetime.now()
         if status == "active":
             self.is_active = True
@@ -74,13 +45,6 @@ class BaseAgent(ABC):
             logger.debug(f"{self.name} status: {status} - {message}")
     
     def add_to_memory(self, event: str, data: Dict[str, Any] = None):
-        """
-        Add an event to agent memory for tracking and analysis
-        
-        Args:
-            event: Event description
-            data: Optional event data
-        """
         memory_entry = {
             "timestamp": datetime.now().isoformat(),
             "event": event,
@@ -96,21 +60,9 @@ class BaseAgent(ABC):
     
     @abstractmethod
     async def process_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Process incoming message and return response
-        
-        Args:
-            message: Input message dictionary
-            
-        Returns:
-            Response dictionary with status and data
-        """
         pass
     
     async def send_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Send message to agent with error handling and metrics
-        """
         try:
             self.message_count += 1
             self.last_activity = datetime.now()
@@ -199,42 +151,34 @@ class BaseAgent(ABC):
         }
     
     def get_latest_alerts(self) -> List[Dict[str, Any]]:
-        """
-        Get latest alerts from this agent
-        Default implementation returns empty list - override in subclasses
-        """
         return []
     
     def get_latest_signals(self) -> List[Dict[str, Any]]:
-        """
-        Get latest signals from this agent  
-        Default implementation returns empty list - override in subclasses
-        """
         return []
     
     async def start(self):
         """Start the agent"""
         self.is_active = True
         self.start_time = datetime.now()
-        logger.info(f"🚀 {self.name} agent started")
+        logger.info(f" {self.name} agent started")
     
     async def stop(self):
         """Stop the agent"""
         self.is_active = False
-        logger.info(f"🛑 {self.name} agent stopped")
+        logger.info(f" {self.name} agent stopped")
     
     async def restart(self):
         """Restart the agent"""
         await self.stop()
         await self.start()
-        logger.info(f"🔄 {self.name} agent restarted")
+        logger.info(f" {self.name} agent restarted")
     
     def reset_metrics(self):
         """Reset performance metrics"""
         self.message_count = 0
         self.error_count = 0
         self.start_time = datetime.now()
-        logger.info(f"📊 {self.name} metrics reset")
+        logger.info(f" {self.name} metrics reset")
     
     def __str__(self) -> str:
         return f"{self.name} Agent (v{self.version})"

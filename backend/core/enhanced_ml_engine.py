@@ -1,9 +1,3 @@
-"""
-🤖 Enhanced ML Engine for Real-Time Financial Predictions
-=========================================================
-Real machine learning models trained on live market data
-"""
-
 import asyncio
 import yfinance as yf
 import pandas as pd
@@ -183,7 +177,7 @@ class RealTimeMLPredictor:
         try:
             # Check if model exists and is recent (retrain if older than 1 day)
             if symbol not in self.models or \
-               (datetime.utcnow() - self.models[symbol]['trained_at']).days > 1:
+                (datetime.utcnow() - self.models[symbol]['trained_at']).days > 1:
                 
                 logger.info(f"Training/retraining model for {symbol}...")
                 success = await self.train_model(symbol)

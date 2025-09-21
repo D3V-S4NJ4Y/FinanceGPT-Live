@@ -1,9 +1,3 @@
-"""
-🔌 API Routes - Market Regime Analysis
-====================================
-Real-time market regime detection and analysis
-"""
-
 from fastapi import APIRouter, HTTPException, Query, Depends
 from typing import List, Optional, Dict, Any
 from pydantic import BaseModel
@@ -32,9 +26,6 @@ router = APIRouter(tags=["Market Analysis"])
 
 @router.get("/market-regime")
 async def get_market_regime() -> MarketRegimeResponse:
-    """
-    Get the current market regime based on real-time market data analysis
-    """
     try:
         # Get real market data for key indices
         market_indices = ["^GSPC", "^DJI", "^IXIC", "^RUT"]  # S&P 500, Dow, Nasdaq, Russell 2000

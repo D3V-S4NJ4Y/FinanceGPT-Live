@@ -1,9 +1,3 @@
-"""
-🔌 API Routes - Market Data Endpoints
-=====================================
-Real-time market data API with advanced analytics
-"""
-
 from fastapi import APIRouter, HTTPException, Query, Depends
 from fastapi.responses import StreamingResponse
 from typing import List, Optional, Dict, Any
@@ -34,9 +28,6 @@ POPULAR_SYMBOLS = [
 
 @router.post("/data")
 async def get_market_data_bulk(request: MarketDataRequest):
-    """
-    Get market data for multiple symbols - Frontend compatible endpoint
-    """
     try:
         market_data = {
             "stocks": [],
@@ -89,11 +80,6 @@ async def get_market_data_bulk(request: MarketDataRequest):
 
 @router.get("/quote/{symbol}")
 async def get_stock_quote(symbol: str):
-    """
-    🎯 Get real-time stock quote
-    
-    Returns comprehensive market data for a single symbol
-    """
     try:
         ticker = yf.Ticker(symbol.upper())
         
@@ -132,11 +118,6 @@ async def get_stock_quote(symbol: str):
 async def get_multiple_quotes(
     symbols: str = Query(..., description="Comma-separated symbols (e.g., AAPL,MSFT,GOOGL)")
 ):
-    """
-    📈 Get quotes for multiple symbols
-    
-    Efficient batch processing for portfolio tracking
-    """
     try:
         symbol_list = [s.strip().upper() for s in symbols.split(",")]
         
@@ -177,11 +158,6 @@ async def get_multiple_quotes(
 
 @router.get("/trending")
 async def get_trending_stocks():
-    """
-    🔥 Get trending/popular stocks
-    
-    Returns most actively traded and talked about stocks
-    """
     try:
         trending_data = []
         
@@ -220,9 +196,6 @@ async def get_trending_stocks():
 
 @router.get("/latest")
 async def get_latest_market_data():
-    """
-    📊 Get latest market data with multiple data source fallback
-    """
     try:
         symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NVDA', 'NFLX', 'SPY', 'QQQ']
         market_data = []
@@ -238,9 +211,9 @@ async def get_latest_market_data():
         
         # Fetch only missing data
         if symbols_to_fetch:
-            logger.info(f"🔄 Fetching fresh data for {len(symbols_to_fetch)} symbols...")
+            logger.info(f" Fetching fresh data for {len(symbols_to_fetch)} symbols...")
             
-            # 🥇 PRIMARY: Try Finnhub first (real market data)
+            #  PRIMARY: Try Finnhub first (real market data)
             finnhub_success = []
             finnhub_failed = []
             
@@ -259,16 +232,16 @@ async def get_latest_market_data():
                         # Finnhub fallback data - will try Yahoo Finance
                         finnhub_failed.append(data['symbol'])
                 
-                logger.info(f"📊 Finnhub: {len(finnhub_success)} real, {len(finnhub_failed)} need alternative")
+                logger.info(f" Finnhub: {len(finnhub_success)} real, {len(finnhub_failed)} need alternative")
                 
             except Exception as e:
                 logger.warning(f"⚠️ Finnhub completely failed: {e}")
                 finnhub_failed = symbols_to_fetch.copy()
             
-            # 🥈 SECONDARY: Yahoo Finance for failed Finnhub symbols only
+            # SECONDARY: Yahoo Finance for failed Finnhub symbols only
             yahoo_failed = []
             if finnhub_failed:
-                logger.info(f"🔄 Trying Yahoo Finance for {len(finnhub_failed)} failed symbols...")
+                logger.info(f" Trying Yahoo Finance for {len(finnhub_failed)} failed symbols...")
                 
                 for symbol in finnhub_failed:
                     try:
@@ -310,9 +283,9 @@ async def get_latest_market_data():
                         logger.warning(f"⚠️ Yahoo Finance failed for {symbol}: {e}")
                         yahoo_failed.append(symbol)
             
-            # 🥉 EMERGENCY: Fallback for symbols that failed both APIs
+            #  EMERGENCY: Fallback for symbols that failed both APIs
             if yahoo_failed:
-                logger.warning(f"🚨 Both APIs failed for {len(yahoo_failed)} symbols, using fallback data")
+                logger.warning(f" Both APIs failed for {len(yahoo_failed)} symbols, using fallback data")
                 fallback_data = _generate_fallback_data(yahoo_failed)
                 for data in fallback_data:
                     cache.set_market_data(data['symbol'], data, 30)
@@ -373,11 +346,6 @@ async def get_stock_history(
     period: str = Query("1mo", description="Period: 1d,5d,1mo,3mo,6mo,1y,2y,5y"),
     interval: str = Query("1d", description="Interval: 1m,2m,5m,15m,30m,60m,90m,1h,1d,5d,1wk,1mo,3mo")
 ):
-    """
-    📊 Get historical stock data
-    
-    Perfect for charting and technical analysis
-    """
     try:
         ticker = yf.Ticker(symbol.upper())
         hist = ticker.history(period=period, interval=interval)
@@ -422,11 +390,6 @@ async def get_stock_history(
 
 @router.get("/stream/{symbol}")
 async def stream_stock_data(symbol: str):
-    """
-    🌊 Stream real-time stock data
-    
-    Server-sent events for live price updates
-    """
     async def generate_stock_stream():
         """Generate real-time stock price stream"""
         ticker = yf.Ticker(symbol.upper())
@@ -462,11 +425,6 @@ async def stream_stock_data(symbol: str):
 
 @router.get("/sectors")
 async def get_sector_performance():
-    """
-    🏭 Get sector performance overview
-    
-    Track performance across different market sectors
-    """
     try:
         # Define sector ETFs as proxies
         sector_etfs = {

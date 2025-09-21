@@ -1,9 +1,3 @@
-"""
-📊 Signal Generator Agent
-=========================
-Advanced trading signal generation using AI analysis
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional
@@ -15,16 +9,6 @@ from .base_agent import BaseAgent
 logger = logging.getLogger(__name__)
 
 class SignalGeneratorAgent(BaseAgent):
-    """
-    🎯 AI Trading Signal Generator
-    
-    Capabilities:
-    - Multi-timeframe analysis
-    - Technical indicator integration
-    - Momentum and trend detection
-    - Risk-adjusted signal scoring
-    - Backtesting and validation
-    """
     
     def __init__(self):
         super().__init__(
@@ -55,18 +39,9 @@ class SignalGeneratorAgent(BaseAgent):
             "profitable_signals": 0
         }
         
-        logger.info("📊 Signal Generator Agent initialized")
+        logger.info(" Signal Generator Agent initialized")
         
     async def process_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Process incoming messages and generate signals using REAL market data
-        
-        Args:
-            message: Message containing request details
-            
-        Returns:
-            Response with signal data
-        """
         try:
             message_type = message.get("type", "unknown")
             symbol = message.get("symbol")
@@ -292,7 +267,7 @@ class SignalGeneratorAgent(BaseAgent):
             # Normalize to -100 to +100
             technical_score = max(-100, min(100, technical_score))
             
-            logger.info(f"📊 Technical analysis for {symbol}: score={technical_score}, price=${current_price}, change={change_percent}%")
+            logger.info(f" Technical analysis for {symbol}: score={technical_score}, price=${current_price}, change={change_percent}%")
             return technical_score
             
         except Exception as e:
@@ -369,7 +344,7 @@ class SignalGeneratorAgent(BaseAgent):
             # Normalize to -100 to +100
             momentum_score = max(-100, min(100, momentum_score))
             
-            logger.info(f"🚀 Momentum analysis for {symbol}: score={momentum_score}, change={change_percent}%, vol_ratio={volume_ratio:.2f}")
+            logger.info(f" Momentum analysis for {symbol}: score={momentum_score}, change={change_percent}%, vol_ratio={volume_ratio:.2f}")
             return momentum_score
             
         except Exception as e:
@@ -414,7 +389,7 @@ class SignalGeneratorAgent(BaseAgent):
             # Normalize to -100 to +100
             volume_score = max(-100, min(100, volume_score))
             
-            logger.info(f"📊 Volume analysis for {symbol}: score={volume_score}, vol_ratio={volume_ratio:.2f}, change={change_percent}%")
+            logger.info(f" Volume analysis for {symbol}: score={volume_score}, vol_ratio={volume_ratio:.2f}, change={change_percent}%")
             return volume_score
             
         except Exception as e:

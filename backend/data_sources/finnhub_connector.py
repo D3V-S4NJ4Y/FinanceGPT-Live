@@ -1,11 +1,3 @@
-"""
-📊 Finnhub Data Connector
-=========================
-
-High-performance connector for real-time market data from Finnhub API.
-Primary data source when Yahoo Finance fails.
-"""
-
 import asyncio
 import aiohttp
 import logging
@@ -18,18 +10,7 @@ from core.config import settings
 
 logger = logging.getLogger(__name__)
 
-class FinnhubConnector:
-    """
-    🚀 Finnhub API Data Connector
-    
-    Features:
-    - Real-time market quotes
-    - Company profiles
-    - Market news
-    - Financial metrics
-    - High reliability fallback
-    """
-    
+class FinnhubConnector: 
     def __init__(self):
         self.base_url = "https://finnhub.io/api/v1"
         self.api_key = settings.finnhub_key

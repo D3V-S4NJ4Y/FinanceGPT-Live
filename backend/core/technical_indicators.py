@@ -1,9 +1,3 @@
-"""
-📊 Technical Indicators Engine
-=============================
-High-performance technical analysis calculations
-"""
-
 import numpy as np
 import pandas as pd
 from typing import Dict, List, Tuple, Optional

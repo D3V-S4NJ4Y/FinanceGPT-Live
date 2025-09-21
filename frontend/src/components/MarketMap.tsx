@@ -262,7 +262,7 @@ const MarketMap: React.FC = () => {
             <div className="space-y-1">
               {Object.entries(sectors).map(([sector, color]) => (
                 <div key={sector} className="flex items-center space-x-2">
-                  <div className={`w-3 h-3 rounded-full ${getColorClass(color)}`}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }}></div>
                   <span className="text-gray-300">{sector}</span>
                 </div>
               ))}
@@ -271,12 +271,12 @@ const MarketMap: React.FC = () => {
           {viewMode === 'volume' && (
             <div className="space-y-1">
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-blue-500 rounded-full opacity-100"></div>
-                <span className="text-gray-300">High Volume</span>
+                <div className="w-3 h-3 bg-blue-500 rounded-full opacity-30"></div>
+                <span className="text-gray-300">Low Volume</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-blue-500 rounded-full opacity-50"></div>
-                <span className="text-gray-300">Low Volume</span>
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span className="text-gray-300">High Volume</span>
               </div>
             </div>
           )}
@@ -284,68 +284,22 @@ const MarketMap: React.FC = () => {
 
         {/* Selected Bubble Info */}
         {selectedBubble && (
-          <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm rounded-lg p-4 min-w-48">
-            <h4 className="font-bold text-lg text-white mb-2">{selectedBubble.symbol}</h4>
-            <div className="space-y-1 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-400">Price:</span>
-                <span className="text-white">${selectedBubble.price.toFixed(2)}</span>
+          <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm rounded-lg p-4 text-sm max-w-xs">
+            <h4 className="font-semibold text-white mb-2">{selectedBubble.symbol}</h4>
+            <div className="space-y-1 text-gray-300">
+              <div>Price: ${selectedBubble.price.toFixed(2)}</div>
+              <div className={selectedBubble.change > 0 ? 'text-green-400' : 'text-red-400'}>
+                Change: {selectedBubble.change > 0 ? '+' : ''}{selectedBubble.change.toFixed(2)}%
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Change:</span>
-                <span className={selectedBubble.change > 0 ? 'text-green-400' : 'text-red-400'}>
-                  {selectedBubble.change > 0 ? '+' : ''}{selectedBubble.change.toFixed(2)}%
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Volume:</span>
-                <span className="text-white">{(selectedBubble.volume / 1000000).toFixed(1)}M</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Market Cap:</span>
-                <span className="text-white">${selectedBubble.marketCap}B</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Sector:</span>
-                <span className="text-white">{selectedBubble.sector}</span>
-              </div>
+              <div>Volume: {(selectedBubble.volume / 1000000).toFixed(1)}M</div>
+              <div>Market Cap: ${(selectedBubble.marketCap).toFixed(1)}B</div>
+              <div>Sector: {selectedBubble.sector}</div>
             </div>
           </div>
         )}
-      </div>
-
-      {/* Market Stats */}
-      <div className="mt-4 grid grid-cols-3 gap-4 text-center">
-        <div className="bg-gray-800/50 rounded-lg p-3">
-          <div className="flex items-center justify-center space-x-2 text-green-400">
-            <TrendingUp className="w-4 h-4" />
-            <span className="text-sm font-semibold">Gainers</span>
-          </div>
-          <p className="text-xl font-bold text-white">
-            {marketBubbles.filter(b => b.change > 0).length}
-          </p>
-        </div>
-        <div className="bg-gray-800/50 rounded-lg p-3">
-          <div className="flex items-center justify-center space-x-2 text-red-400">
-            <TrendingDown className="w-4 h-4" />
-            <span className="text-sm font-semibold">Decliners</span>
-          </div>
-          <p className="text-xl font-bold text-white">
-            {marketBubbles.filter(b => b.change < 0).length}
-          </p>
-        </div>
-        <div className="bg-gray-800/50 rounded-lg p-3">
-          <div className="flex items-center justify-center space-x-2 text-blue-400">
-            <BarChart3 className="w-4 h-4" />
-            <span className="text-sm font-semibold">Total Vol</span>
-          </div>
-          <p className="text-xl font-bold text-white">
-            {(marketBubbles.reduce((sum, b) => sum + b.volume, 0) / 1000000000).toFixed(1)}B
-          </p>
-        </div>
       </div>
     </div>
   );
 };
 
-export default MarketMap;
+

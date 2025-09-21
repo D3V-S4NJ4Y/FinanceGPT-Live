@@ -1,9 +1,3 @@
-"""
-🚨 Real-Time Alert System 
-==========================
-Generate meaningful alerts from real market data and events
-"""
-
 import asyncio
 import yfinance as yf
 import pandas as pd
@@ -11,7 +5,10 @@ import numpy as np
 from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional
 import logging
-import feedparser
+try:
+    import feedparser
+except ImportError:
+    feedparser = None
 import aiohttp
 from dataclasses import dataclass
 import hashlib

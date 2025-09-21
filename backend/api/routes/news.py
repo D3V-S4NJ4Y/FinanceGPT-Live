@@ -1,9 +1,3 @@
-"""
-📰 Real-Time Financial News API
-==============================
-Comprehensive financial news aggregation and analysis
-"""
-
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional, Dict, Any
 import asyncio
@@ -14,7 +8,10 @@ import yfinance as yf
 
 try:
     import aiohttp
-    import feedparser
+    try:
+        import feedparser
+    except ImportError:
+        feedparser = None
     from textblob import TextBlob
     DEPENDENCIES_AVAILABLE = True
 except ImportError:
@@ -253,9 +250,6 @@ async def get_latest_news(
     sentiment: Optional[str] = Query(None, description="Sentiment filter"),
     limit: int = Query(50, description="Number of articles to return")
 ):
-    """
-    📰 Get latest financial news - Real market-based news
-    """
     try:
         symbol_list = symbols.split(',') if symbols else [
             'AAPL', 'GOOGL', 'MSFT', 'TSLA', 'AMZN', 'NVDA', 'META', 'NFLX', 
@@ -581,11 +575,6 @@ async def get_market_events(
     symbols: Optional[str] = Query(None, description="Symbols to monitor"),
     hours: int = Query(24, description="Hours to look back")
 ):
-    """
-    📅 Get market events and earnings calendar
-    
-    Returns upcoming and recent market events
-    """
     try:
         symbol_list = []
         if symbols:
@@ -674,11 +663,7 @@ async def get_news_sentiment(
     symbols: Optional[str] = Query(None, description="Symbols to analyze"),
     hours: int = Query(24, description="Hours to analyze")
 ):
-    """
-    📊 Get aggregated news sentiment analysis
-    
-    Returns sentiment trends and analysis for specified symbols
-    """
+
     try:
         symbol_list = []
         if symbols:

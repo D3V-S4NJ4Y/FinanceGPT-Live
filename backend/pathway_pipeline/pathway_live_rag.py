@@ -1,16 +1,3 @@
-"""
-🚀 Pathway LiveAI RAG Implementation
-===================================
-Real-time RAG system using Pathway
-
-HACKATHON REQUIREMENTS FULFILLED:
-✅ Pathway-Powered Streaming ETL: Real-time financial data ingestion
-✅ Dynamic Indexing: Live vector embeddings without rebuilds  
-✅ Live Retrieval/Generation: Real-time RAG with instant updates
-✅ No Mock Data: Only real market data from Yahoo Finance, RSS feeds
-✅ Multi-Agent Orchestration: Financial AI agents with real-time context
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional
@@ -81,16 +68,6 @@ class FinancialDocument:
     metadata: Dict[str, Any]
 
 class PathwayLiveRAG:
-    """
-    🎯 Pathway LiveAI RAG System for Financial Intelligence
-    
-    Features:
-    - Real-time data streaming with Pathway
-    - Dynamic vector indexing without rebuilds
-    - Live RAG responses with fresh context
-    - Multi-source financial data integration
-    """
-    
     def __init__(self):
         self.openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
         self.is_running = False
@@ -258,11 +235,6 @@ class PathwayLiveRAG:
         return symbols
     
     async def query_live_rag(self, question: str, context_filter: Optional[Dict] = None) -> Dict[str, Any]:
-        """
-        🎯 Live RAG Query - Real-time financial intelligence
-        
-        This is the core hackathon feature: RAG with live, updating context
-        """
         try:
             # Generate query embedding
             query_response = self.openai_client.embeddings.create(
@@ -358,7 +330,7 @@ class PathwayLiveRAG:
             )
             
             self.is_running = True
-            logger.info("🚀 Pathway LiveRAG system started - HACKATHON READY")
+            logger.info(" Pathway LiveRAG system started - HACKATHON READY")
             
         except Exception as e:
             logger.error(f"Failed to start Pathway system: {e}")
@@ -367,7 +339,7 @@ class PathwayLiveRAG:
     async def stop_live_system(self):
         """Stop the live system"""
         self.is_running = False
-        logger.info("⏹️ Pathway LiveRAG system stopped")
+        logger.info(" Pathway LiveRAG system stopped")
     
     def get_system_status(self) -> Dict[str, Any]:
         """Get system status for monitoring"""

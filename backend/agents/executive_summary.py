@@ -1,9 +1,3 @@
-"""
-📋 Executive Summary Agent
-=========================
-High-level portfolio and market analysis for executive reporting
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional
@@ -14,16 +8,6 @@ from .base_agent import BaseAgent
 logger = logging.getLogger(__name__)
 
 class ExecutiveSummaryAgent(BaseAgent):
-    """
-    🎯 AI Executive Summary Generator
-    
-    Capabilities:
-    - High-level market analysis
-    - Portfolio performance summaries
-    - Risk assessment overviews
-    - Strategic recommendations
-    - Executive-level reporting
-    """
     
     def __init__(self):
         super().__init__(
@@ -45,19 +29,9 @@ class ExecutiveSummaryAgent(BaseAgent):
             "market_outlook", "strategic_recommendations"
         ]
         
-        logger.info("📋 Executive Summary Agent initialized")
+        logger.info(" Executive Summary Agent initialized")
         
     async def generate_daily_summary(self, portfolio_data: Dict[str, Any], market_data: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Generate comprehensive daily executive summary
-        
-        Args:
-            portfolio_data: Current portfolio information
-            market_data: Market data and performance
-            
-        Returns:
-            Executive summary with key insights and recommendations
-        """
         try:
             self.update_status("active", "Generating daily executive summary...")
             
@@ -510,7 +484,7 @@ class ExecutiveSummaryAgent(BaseAgent):
     
     async def process_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """
-        🔄 Process incoming executive summary requests
+        Process incoming executive summary requests
         """
         try:
             message_type = message.get('type', 'executive_summary')

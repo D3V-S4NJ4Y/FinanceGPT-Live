@@ -1,10 +1,3 @@
-"""
-🚀 Enhanced AI Intelligence WebSocket Handler
-============================================
-Real-time AI Intelligence dashboard with accurate market data, ML predictions,
-and AI agent analysis. NO MOCK DATA - Only real financial intelligence.
-"""
-
 import asyncio
 import json
 import logging
@@ -20,19 +13,6 @@ from api.websocket import WebSocketManager
 logger = logging.getLogger(__name__)
 
 class EnhancedAIIntelligenceHandler:
-    """
-    🧠 Enhanced AI Intelligence WebSocket Handler
-    
-    Provides real-time:
-    - Live market data from Yahoo Finance
-    - Real ML predictions with confidence scores
-    - AI agent analysis and insights
-    - Technical analysis signals
-    - Risk assessments
-    - Portfolio analytics
-    
-    Zero mock data - All intelligence is computed from real market sources
-    """
     
     def __init__(self, websocket_manager: WebSocketManager):
         self.websocket_manager = websocket_manager
@@ -392,11 +372,11 @@ class EnhancedAIIntelligenceHandler:
         """Clean up client subscription data"""
         if client_id in self.active_subscriptions:
             del self.active_subscriptions[client_id]
-            logger.info(f"🧹 Cleaned up subscription for client {client_id}")
+            logger.info(f" Cleaned up subscription for client {client_id}")
     
     async def run_real_time_intelligence_loop(self):
         """Main real-time intelligence broadcasting loop"""
-        logger.info("🚀 Starting Ultra-Fast Real-Time AI Intelligence Loop")
+        logger.info(" Starting Ultra-Fast Real-Time AI Intelligence Loop")
         
         cycle_count = 0
         
@@ -431,7 +411,7 @@ class EnhancedAIIntelligenceHandler:
     
     async def start(self):
         """Start the enhanced AI intelligence handler"""
-        logger.info("🧠 Starting Enhanced AI Intelligence Handler")
+        logger.info(" Starting Enhanced AI Intelligence Handler")
         asyncio.create_task(self.run_real_time_intelligence_loop())
 
 # Legacy alias for backward compatibility

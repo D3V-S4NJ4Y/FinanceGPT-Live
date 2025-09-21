@@ -1,9 +1,3 @@
-"""
-🚀 Pathway LiveAI Server Integration
-===================================
-Standalone Pathway server for real-time financial data processing
-"""
-
 import asyncio
 import uvicorn
 from fastapi import FastAPI
@@ -39,7 +33,7 @@ def create_pathway_app():
     @app.on_event("startup")
     async def startup_event():
         """Start Pathway streaming on startup"""
-        logger.info("🚀 Starting Pathway LiveAI streaming...")
+        logger.info(" Starting Pathway LiveAI streaming...")
         
         # Start market data streaming
         asyncio.create_task(market_streamer.start_streaming())

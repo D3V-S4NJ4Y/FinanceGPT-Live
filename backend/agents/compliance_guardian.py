@@ -1,9 +1,3 @@
-"""
-🛡️ Compliance Guardian Agent
-============================
-Regulatory compliance and risk monitoring
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional
@@ -13,17 +7,6 @@ from .base_agent import BaseAgent
 logger = logging.getLogger(__name__)
 
 class ComplianceGuardianAgent(BaseAgent):
-    """
-    🎯 AI Compliance Guardian
-    
-    Capabilities:
-    - Regulatory compliance monitoring
-    - Risk limit enforcement
-    - Trade surveillance
-    - Reporting and documentation
-    - Alert generation
-    """
-    
     def __init__(self):
         super().__init__(
             name="Compliance Guardian",
@@ -51,18 +34,9 @@ class ComplianceGuardianAgent(BaseAgent):
         self.violation_history = []
         self.audit_trail = []
         
-        logger.info("🛡️ Compliance Guardian Agent initialized")
+        logger.info(" Compliance Guardian Agent initialized")
         
     async def check_trade_compliance(self, trade_request: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Check trade compliance before execution
-        
-        Args:
-            trade_request: Proposed trade details
-            
-        Returns:
-            Compliance check result with approval/rejection and reasons
-        """
         try:
             self.update_status("active", "Checking trade compliance...")
             
@@ -591,7 +565,7 @@ class ComplianceGuardianAgent(BaseAgent):
     
     async def process_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """
-        🔄 Process incoming compliance monitoring requests
+        Process incoming compliance monitoring requests
         """
         try:
             message_type = message.get('type', 'compliance_check')

@@ -1,20 +1,3 @@
-"""
-🚀 Real-Time Financial Data Streams - Pathway Integration
-========================================================
-
-PATHWAY LIVRAI HACKATHON - PRODUCTION DATA STREAMS
-
-This module provides REAL financial data streams (NO MOCK DATA):
-- Live market data from Yahoo Finance API
-- Real-time news feeds from financial sources  
-- SEC filings and earnings reports
-- Economic indicators and events
-- Cryptocurrency data streams
-- Social sentiment analysis
-
-All data is processed in real-time using Pathway's streaming capabilities.
-"""
-
 # Import Pathway with fallback to mock for demonstration
 try:
     import pathway as pw
@@ -94,15 +77,6 @@ class EconomicIndicator:
     unit: str = ""
 
 class RealTimeFinancialDataStreams:
-    """
-    🚀 Real-Time Financial Data Streams for Pathway LiveAI
-    
-    This class creates REAL data streams for the hackathon:
-    - NO MOCK DATA - All sources are authentic
-    - Live updates every 30 seconds to 3 minutes
-    - Multiple financial data sources
-    - Real-time processing with Pathway
-    """
     
     def __init__(self):
         self.logger = logging.getLogger(self.__class__.__name__)
@@ -134,14 +108,14 @@ class RealTimeFinancialDataStreams:
             'https://feeds.feedburner.com/cnbc-technology',
         ]
         
-        self.logger.info("🚀 RealTimeFinancialDataStreams initialized")
-        self.logger.info(f"📊 Tracking {len(self.tracked_symbols)} symbols")
-        self.logger.info(f"📰 Monitoring {len(self.news_feeds)} news sources")
-        self.logger.info(f"🎯 Pathway Available: {PATHWAY_AVAILABLE}")
+        self.logger.info(" RealTimeFinancialDataStreams initialized")
+        self.logger.info(f" Tracking {len(self.tracked_symbols)} symbols")
+        self.logger.info(f" Monitoring {len(self.news_feeds)} news sources")
+        self.logger.info(f" Pathway Available: {PATHWAY_AVAILABLE}")
     
     def create_market_data_stream(self):
         """Create Pathway table for real-time market data"""
-        self.logger.info("📊 Creating real-time market data stream...")
+        self.logger.info(" Creating real-time market data stream...")
         
         if pw is None:
             return None
@@ -157,7 +131,7 @@ class RealTimeFinancialDataStreams:
                     daemon=True
                 )
                 self._market_update_thread.start()
-                self.logger.info("🔄 Market data update thread started")
+                self.logger.info(" Market data update thread started")
             
             self.tables['market_data'] = market_table
             return market_table
@@ -168,7 +142,7 @@ class RealTimeFinancialDataStreams:
     
     def create_financial_news_stream(self):
         """Create Pathway table for real-time financial news"""
-        self.logger.info("📰 Creating real-time financial news stream...")
+        self.logger.info(" Creating real-time financial news stream...")
         
         if pw is None:
             return None
@@ -183,7 +157,7 @@ class RealTimeFinancialDataStreams:
                     daemon=True
                 )
                 self._news_update_thread.start()
-                self.logger.info("🔄 News data update thread started")
+                self.logger.info(" News data update thread started")
             
             self.tables['financial_news'] = news_table
             return news_table
@@ -194,7 +168,7 @@ class RealTimeFinancialDataStreams:
     
     def create_sec_filings_stream(self):
         """Create Pathway table for SEC filings monitoring"""
-        self.logger.info("📋 Creating SEC filings monitoring stream...")
+        self.logger.info(" Creating SEC filings monitoring stream...")
         
         if pw is None:
             return None
@@ -209,7 +183,7 @@ class RealTimeFinancialDataStreams:
                     daemon=True
                 )
                 self._sec_update_thread.start()
-                self.logger.info("🔄 SEC filings monitoring thread started")
+                self.logger.info(" SEC filings monitoring thread started")
             
             self.tables['sec_filings'] = sec_table
             return sec_table
@@ -235,7 +209,7 @@ class RealTimeFinancialDataStreams:
                     daemon=True
                 )
                 self._econ_update_thread.start()
-                self.logger.info("🔄 Economic indicators monitoring thread started")
+                self.logger.info(" Economic indicators monitoring thread started")
             
             self.tables['economic_indicators'] = econ_table
             return econ_table
@@ -246,7 +220,7 @@ class RealTimeFinancialDataStreams:
     
     def _update_market_data_loop(self):
         """Background loop to fetch real market data"""
-        self.logger.info("📊 Starting market data update loop...")
+        self.logger.info(" Starting market data update loop...")
         
         while True:
             try:
@@ -256,7 +230,7 @@ class RealTimeFinancialDataStreams:
                 # Update the Pathway table
                 if 'market_data' in self.tables and market_data:
                     self.tables['market_data'].update_data(market_data)
-                    self.logger.info(f"📊 Updated market data: {len(market_data)} symbols")
+                    self.logger.info(f" Updated market data: {len(market_data)} symbols")
                 
                 # Wait 30 seconds before next update
                 time.sleep(30)
@@ -267,7 +241,7 @@ class RealTimeFinancialDataStreams:
     
     def _update_news_data_loop(self):
         """Background loop to fetch real financial news"""
-        self.logger.info("📰 Starting news data update loop...")
+        self.logger.info(" Starting news data update loop...")
         
         while True:
             try:
@@ -277,7 +251,7 @@ class RealTimeFinancialDataStreams:
                 # Update the Pathway table
                 if 'financial_news' in self.tables and news_data:
                     self.tables['financial_news'].update_data(news_data)
-                    self.logger.info(f"📰 Updated news data: {len(news_data)} articles")
+                    self.logger.info(f" Updated news data: {len(news_data)} articles")
                 
                 # Wait 3 minutes before next update
                 time.sleep(180)
@@ -288,7 +262,7 @@ class RealTimeFinancialDataStreams:
     
     def _update_sec_filings_loop(self):
         """Background loop to monitor SEC filings"""
-        self.logger.info("📋 Starting SEC filings monitoring loop...")
+        self.logger.info(" Starting SEC filings monitoring loop...")
         
         while True:
             try:
@@ -298,7 +272,7 @@ class RealTimeFinancialDataStreams:
                 # Update the Pathway table
                 if 'sec_filings' in self.tables and filings_data:
                     self.tables['sec_filings'].update_data(filings_data)
-                    self.logger.info(f"📋 Updated SEC filings: {len(filings_data)} new filings")
+                    self.logger.info(f" Updated SEC filings: {len(filings_data)} new filings")
                 
                 # Wait 10 minutes before next check
                 time.sleep(600)
@@ -364,7 +338,7 @@ class RealTimeFinancialDataStreams:
                     self.logger.warning(f"⚠️  Error fetching data for {symbol}: {ticker_error}")
                     continue
             
-            self.logger.info(f"📊 Fetched real market data for {len(market_data)} symbols")
+            self.logger.info(f" Fetched real market data for {len(market_data)} symbols")
             return market_data
             
         except Exception as e:
@@ -403,7 +377,7 @@ class RealTimeFinancialDataStreams:
                     self.logger.warning(f"⚠️  Error parsing feed {feed_url}: {feed_error}")
                     continue
             
-            self.logger.info(f"📰 Fetched {len(news_data)} real news articles")
+            self.logger.info(f" Fetched {len(news_data)} real news articles")
             return news_data
             
         except Exception as e:
@@ -438,7 +412,7 @@ class RealTimeFinancialDataStreams:
                 })
             
             if filings_data:
-                self.logger.info(f"📋 Found {len(filings_data)} new SEC filings")
+                self.logger.info(f" Found {len(filings_data)} new SEC filings")
             
             return filings_data
             
@@ -449,8 +423,6 @@ class RealTimeFinancialDataStreams:
     def _fetch_economic_indicators(self) -> List[Dict]:
         """Fetch economic indicators - Simulated for demo"""
         try:
-            # In a real implementation, this would connect to economic data APIs
-            # For hackathon demo, we'll simulate realistic indicators
             import random
             
             indicators_data = []
@@ -479,7 +451,7 @@ class RealTimeFinancialDataStreams:
                     'unit': data['unit']
                 })
             
-            self.logger.info(f"📈 Fetched {len(indicators_data)} economic indicators")
+            self.logger.info(f" Fetched {len(indicators_data)} economic indicators")
             return indicators_data
             
         except Exception as e:
@@ -535,7 +507,7 @@ class RealTimeFinancialDataStreams:
     def stop_all_streams(self):
         """Stop all data streams"""
         self.is_running = False
-        self.logger.info("🛑 Stopping all real-time data streams")
+        self.logger.info(" Stopping all real-time data streams")
         
         # Stop all tables
         for table_name, table in self.tables.items():

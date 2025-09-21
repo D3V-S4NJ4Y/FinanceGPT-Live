@@ -1,12 +1,3 @@
-"""
-🤖 Advanced AI/ML Trading Engine
-=============================
-
-Sophisticated machine learning models for financial analysis and prediction.
-Implements state-of-the-art algorithms for market analysis.
-
-"""
-
 import asyncio
 import numpy as np
 import pandas as pd
@@ -56,16 +47,6 @@ class TechnicalIndicators:
     volume_sma: float
 
 class AdvancedMLTradingEngine:
-    """
-    🧠 Advanced ML Trading Engine
-    
-    Features:
-    - Multiple ML models (Random Forest, Gradient Boosting, Neural Networks)
-    - Advanced technical indicators calculation
-    - Sentiment analysis integration
-    - Risk assessment and portfolio optimization
-    - Real-time prediction updates
-    """
     
     def __init__(self):
         self.models = {}
@@ -95,7 +76,7 @@ class AdvancedMLTradingEngine:
             }
         }
         
-        logger.info("🤖 Advanced ML Trading Engine initialized")
+        logger.info(" Advanced ML Trading Engine initialized")
     
     async def get_enhanced_market_data(self, symbol: str, period: str = "1y") -> pd.DataFrame:
         """Get comprehensive market data with technical indicators"""
@@ -330,7 +311,7 @@ class AdvancedMLTradingEngine:
             
             # Select best model
             best_model = max(models_performance.keys(), 
-                           key=lambda x: models_performance[x]['r2_score'])
+            key=lambda x: models_performance[x]['r2_score'])
             
             logger.info(f"✅ Models trained for {symbol}. Best model: {best_model} (R²: {models_performance[best_model]['r2_score']:.4f})")
             
@@ -349,7 +330,7 @@ class AdvancedMLTradingEngine:
     async def generate_prediction(self, symbol: str, use_ensemble: bool = True) -> Optional[PredictionResult]:
         """Generate advanced ML prediction for a symbol"""
         try:
-            logger.info(f"🔮 Generating prediction for {symbol}...")
+            logger.info(f" Generating prediction for {symbol}...")
             
             # Ensure models are trained
             if symbol not in self.models:
@@ -419,7 +400,7 @@ class AdvancedMLTradingEngine:
             else:
                 # Use best performing model
                 best_model = max(self.feature_importance[symbol].keys(),
-                               key=lambda x: self.feature_importance[symbol][x]['r2_score'])
+                key=lambda x: self.feature_importance[symbol][x]['r2_score'])
                 ensemble_return = predictions[best_model]
             
             # Calculate prediction details
@@ -486,10 +467,10 @@ class AdvancedMLTradingEngine:
             return None
     
     async def get_portfolio_optimization(self, symbols: List[str], 
-                                       risk_tolerance: float = 0.5) -> Dict[str, Any]:
+        risk_tolerance: float = 0.5) -> Dict[str, Any]:
         """Generate optimal portfolio allocation using ML predictions"""
         try:
-            logger.info(f"📊 Generating portfolio optimization for {len(symbols)} symbols...")
+            logger.info(f" Generating portfolio optimization for {len(symbols)} symbols...")
             
             # Get predictions for all symbols
             predictions = {}
@@ -536,9 +517,9 @@ class AdvancedMLTradingEngine:
             
             # Calculate portfolio metrics
             portfolio_expected_return = sum(expected_returns[symbol] * weights[symbol] 
-                                          for symbol in weights)
+            for symbol in weights)
             portfolio_risk = sum(risk_scores[symbol] * weights[symbol] 
-                               for symbol in weights)
+            for symbol in weights)
             
             # Generate rebalancing suggestions
             suggestions = []
@@ -575,7 +556,7 @@ class AdvancedMLTradingEngine:
     async def get_market_regime_analysis(self) -> Dict[str, Any]:
         """Analyze current market regime using ML"""
         try:
-            logger.info("🌍 Analyzing market regime...")
+            logger.info(" Analyzing market regime...")
             
             # Analyze major indices
             indices = ['SPY', 'QQQ', 'IWM', 'DIA', 'VIX']
@@ -676,7 +657,7 @@ async def get_ml_prediction(symbol: str) -> Optional[Dict[str, Any]]:
         return None
 
 async def get_portfolio_optimization(symbols: List[str], 
-                                   risk_tolerance: float = 0.5) -> Dict[str, Any]:
+    risk_tolerance: float = 0.5) -> Dict[str, Any]:
     """Get portfolio optimization recommendations"""
     try:
         return await ml_engine.get_portfolio_optimization(symbols, risk_tolerance)

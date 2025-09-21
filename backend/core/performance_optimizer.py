@@ -1,9 +1,3 @@
-"""
-⚡ Performance Optimizer
-=======================
-High-performance data processing and caching strategies
-"""
-
 import asyncio
 import time
 from functools import wraps

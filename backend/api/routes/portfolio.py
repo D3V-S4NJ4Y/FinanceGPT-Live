@@ -1,9 +1,3 @@
-"""
-📊 Portfolio Management API Routes
-==================================
-Real-time portfolio tracking, analytics, and management
-"""
-
 from fastapi import APIRouter, HTTPException, Query, Body
 from typing import List, Optional, Dict, Any
 import numpy as np
@@ -31,11 +25,6 @@ class PortfolioRequest(BaseModel):
 
 @router.post("/calculate")
 async def calculate_portfolio_metrics(portfolio: PortfolioRequest):
-    """
-    📈 Calculate real-time portfolio metrics
-    
-    Returns comprehensive portfolio analytics with current market data
-    """
     try:
         from .market_data import get_latest_market_data
         
@@ -43,8 +32,8 @@ async def calculate_portfolio_metrics(portfolio: PortfolioRequest):
         market_stocks = await get_latest_market_data()
         market_data = {stock['symbol']: stock for stock in market_stocks}
         
-        logger.info(f"📊 Processing portfolio with {len(portfolio.positions)} positions")
-        logger.info(f"📈 Market data available for: {list(market_data.keys())}")
+        logger.info(f" Processing portfolio with {len(portfolio.positions)} positions")
+        logger.info(f" Market data available for: {list(market_data.keys())}")
         
         # Calculate portfolio metrics
         total_market_value = 0.0
@@ -58,7 +47,7 @@ async def calculate_portfolio_metrics(portfolio: PortfolioRequest):
             current_price = market_info.get('price', position.avg_price)
             day_change = market_info.get('change', 0.0)
             
-            logger.info(f"💰 {position.symbol}: ${current_price} (was ${position.avg_price})")
+            logger.info(f" {position.symbol}: ${current_price} (was ${position.avg_price})")
             
             # Calculate position metrics
             market_value = position.quantity * current_price
@@ -215,11 +204,6 @@ async def get_portfolio_alerts(
     portfolio_value: float = Query(..., description="Current portfolio value"),
     risk_tolerance: str = Query("medium", description="Risk tolerance: low, medium, high")
 ):
-    """
-    🚨 Get portfolio-specific alerts and recommendations
-    
-    Returns actionable alerts based on portfolio composition and market conditions
-    """
     try:
         alerts = []
         
@@ -302,11 +286,6 @@ async def get_portfolio_optimization_suggestions(
     target_return: float = Query(0.10, description="Target annual return"),
     risk_tolerance: str = Query("medium", description="Risk tolerance")
 ):
-    """
-    🎯 Get portfolio optimization suggestions
-    
-    Returns recommendations for improving risk-adjusted returns
-    """
     try:
         symbol_list = [s.strip().upper() for s in symbols.split(",")]
         
@@ -379,11 +358,6 @@ async def get_portfolio_optimization_suggestions(
 
 @router.get("/summary")
 async def get_portfolio_summary():
-    """
-    📊 Get portfolio summary with sample data
-    
-    Returns basic portfolio overview for dashboard display
-    """
     try:
         from .market_data import get_latest_market_data
         

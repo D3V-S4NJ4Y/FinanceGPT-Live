@@ -1,10 +1,8 @@
-"""
-🤖 Live AI Agent with Pathway Integration
-========================================
-Real-time financial AI agent with streaming data and dynamic responses
-"""
-
-import pathway as pw
+try:
+    import pathway as pw
+except ImportError:
+    pw = None
+    
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Dict, List, Any, Optional
@@ -12,8 +10,14 @@ import asyncio
 import json
 from datetime import datetime
 import yfinance as yf
+import numpy as np
 import logging
-from .realtime_rag_engine import pathway_rag_engine, market_streamer
+
+try:
+    from .realtime_rag_engine import pathway_rag_engine, market_streamer
+except ImportError:
+    pathway_rag_engine = None
+    market_streamer = None
 
 logger = logging.getLogger(__name__)
 
@@ -275,9 +279,9 @@ class PathwayLiveAIAgent:
                 
                 response = f"**Real-Time Volume Analysis:**\n"
                 if high_volume_stocks:
-                    response += f"📊 High volume activity in: {', '.join(high_volume_stocks)}"
+                    response += f" High volume activity in: {', '.join(high_volume_stocks)}"
                 else:
-                    response += "📊 Trading volumes are at normal levels"
+                    response += " Trading volumes are at normal levels"
                     
         else:
             # General market query

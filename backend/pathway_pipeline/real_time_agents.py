@@ -1,9 +1,3 @@
-"""
-🤖 Real-Time AI Agents with Pathway Integration
-===============================================
-Multi-agent system with live data context
-"""
-
 try:
     import pathway as pw
     PATHWAY_AVAILABLE = True
@@ -239,12 +233,6 @@ class ComplianceAgent(PathwayFinancialAgent):
         """
 
 class MultiAgentOrchestrator:
-    """
-    🎯 Multi-Agent Orchestrator with Pathway Integration
-    
-    Routes queries to appropriate agents based on content and provides
-    coordinated responses using live Pathway data streams.
-    """
     
     def __init__(self):
         self.agents = {

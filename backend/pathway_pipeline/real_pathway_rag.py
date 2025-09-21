@@ -1,5 +1,5 @@
 """
-🚀 Real Pathway LiveAI RAG Implementation
+Real Pathway LiveAI RAG Implementation
 ========================================
 Following official Pathway documentation and examples
 Based on: https://pathway.com/blog/retrieval-augmented-generation-beginners-guide-rag-apps
@@ -20,10 +20,6 @@ import os
 logger = logging.getLogger(__name__)
 
 class RealPathwayRAG:
-    """
-    Real Pathway RAG implementation for financial data
-    Following official Pathway patterns and documentation
-    """
     
     def __init__(self):
         self.openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
@@ -227,7 +223,7 @@ class RealPathwayRAG:
     
     async def query_rag(self, question: str, context_filter: Optional[Dict] = None) -> Dict[str, Any]:
         """
-        🎯 Real-time RAG Query with authentic financial data
+        Real-time RAG Query with authentic financial data
         """
         try:
             # Update document store with fresh data
@@ -297,7 +293,7 @@ class RealPathwayRAG:
         # Start background task to update data periodically
         asyncio.create_task(self._streaming_loop())
         
-        logger.info("🚀 Real Pathway-style streaming started")
+        logger.info(" Real Pathway-style streaming started")
     
     async def _streaming_loop(self):
         """Background loop to update data (simulating Pathway streaming)"""
@@ -312,7 +308,7 @@ class RealPathwayRAG:
     async def stop_streaming(self):
         """Stop the streaming system"""
         self.is_running = False
-        logger.info("⏹️ Streaming stopped")
+        logger.info(" Streaming stopped")
     
     def get_system_status(self) -> Dict[str, Any]:
         """Get system status"""

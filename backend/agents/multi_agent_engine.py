@@ -1,19 +1,4 @@
 #!/usr/bin/env python3
-"""
-🤖 Multi-Agent Collaboration Engine
-=====================================
-
-Advanced AI system where agents work together to provide consensus-driven insights.
-This is the brain that coordinates all 6 AI agents for maximum intelligence.
-
-Features:
-- Consensus-based decision making
-- Cross-agent validation
-- Confidence scoring
-- Dynamic agent weighting
-- Real-time collaboration
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional, Tuple
@@ -62,15 +47,6 @@ class ConsensusResult:
     metadata: Dict[str, Any]
 
 class MultiAgentCollaborationEngine:
-    """
-    🧠 Advanced Multi-Agent Collaboration System
-    
-    This engine coordinates all AI agents to work together, providing:
-    - Consensus-driven recommendations
-    - Cross-validation of insights
-    - Dynamic agent weighting based on performance
-    - Real-time collaborative analysis
-    """
     
     def __init__(self):
         self.agents = {}
@@ -98,19 +74,10 @@ class MultiAgentCollaborationEngine:
         logger.info(f"✅ Agent {agent_id} registered for collaboration")
     
     async def request_consensus(self, 
-                              symbol: str, 
-                              analysis_type: str,
-                              market_data: Dict[str, Any],
-                              timeout: float = 5.0) -> ConsensusResult:
-        """
-        🎯 Request consensus analysis from all agents
-        
-        This is the main coordination function that:
-        1. Requests input from all registered agents
-        2. Analyzes their responses
-        3. Calculates consensus
-        4. Returns weighted recommendation
-        """
+        symbol: str, 
+        analysis_type: str,
+        market_data: Dict[str, Any],
+        timeout: float = 5.0) -> ConsensusResult:
         logger.info(f"🔄 Requesting consensus for {symbol} - {analysis_type}")
         
         # Gather agent inputs in parallel
@@ -142,10 +109,10 @@ class MultiAgentCollaborationEngine:
         return consensus
     
     async def _gather_agent_inputs(self, 
-                                 symbol: str, 
-                                 analysis_type: str,
-                                 market_data: Dict[str, Any],
-                                 timeout: float) -> List[AgentInput]:
+        symbol: str, 
+        analysis_type: str,
+        market_data: Dict[str, Any],
+        timeout: float) -> List[AgentInput]:
         """Gather inputs from all agents in parallel"""
         tasks = []
         
@@ -179,11 +146,11 @@ class MultiAgentCollaborationEngine:
             return []
     
     async def _get_agent_input(self, 
-                             agent_id: str, 
-                             agent, 
-                             symbol: str,
-                             analysis_type: str,
-                             market_data: Dict[str, Any]) -> AgentInput:
+        agent_id: str, 
+        agent, 
+        symbol: str,
+        analysis_type: str,
+        market_data: Dict[str, Any]) -> AgentInput:
         """Get input from a specific agent"""
         try:
             # Create agent-specific message
@@ -218,10 +185,10 @@ class MultiAgentCollaborationEngine:
             raise e
     
     async def _calculate_consensus(self, 
-                                 agent_inputs: List[AgentInput],
-                                 symbol: str,
-                                 analysis_type: str) -> ConsensusResult:
-        """🧮 Calculate consensus from agent inputs using advanced algorithms"""
+        agent_inputs: List[AgentInput],
+        symbol: str,
+        analysis_type: str) -> ConsensusResult:
+        """Calculate consensus from agent inputs using advanced algorithms"""
         
         # Voting system with weighted scores
         action_votes = defaultdict(float)
@@ -391,8 +358,8 @@ class MultiAgentCollaborationEngine:
         return rankings
     
     async def get_consensus_history(self, 
-                                  symbol: Optional[str] = None,
-                                  hours: int = 24) -> List[Dict[str, Any]]:
+        symbol: Optional[str] = None,
+        hours: int = 24) -> List[Dict[str, Any]]:
         """Get historical consensus data"""
         cutoff = datetime.now() - timedelta(hours=hours)
         
@@ -417,10 +384,6 @@ class MultiAgentCollaborationEngine:
 _multi_agent_engine_instance = None
 
 def get_multi_agent_engine():
-    """
-    Get the singleton instance of the MultiAgentEngine.
-    This ensures we use the same engine instance throughout the application.
-    """
     global _multi_agent_engine_instance
     
     if _multi_agent_engine_instance is None:

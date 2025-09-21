@@ -1,9 +1,3 @@
-"""
-🌐 Enhanced Dashboard WebSocket Handler
-=====================================
-Real-time data streaming for SuperAdvancedDashboard
-"""
-
 import asyncio
 import json
 import logging

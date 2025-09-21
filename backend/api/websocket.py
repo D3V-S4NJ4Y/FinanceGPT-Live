@@ -1,9 +1,3 @@
-"""
-⚡ Advanced WebSocket Manager
-===========================
-Real-time communication hub for FinanceGPT Live
-"""
-
 import asyncio
 import json
 import logging
@@ -73,17 +67,6 @@ class ConnectionManager:
             return False
 
 class WebSocketManager:
-    """
-    🎯 Advanced WebSocket Manager
-    
-    Features:
-    - Multi-client management
-    - Topic-based subscriptions
-    - Real-time broadcasting
-    - Connection health monitoring
-    - Message queuing
-    - Connection limiting to prevent resource exhaustion
-    """
     
     def __init__(self, max_connections: int = 100):
         # Active connections by client ID
@@ -168,11 +151,11 @@ class WebSocketManager:
             try:
                 from fastapi.websockets import WebSocketState
                 if connection.is_active and connection.websocket.client_state == WebSocketState.CONNECTED:
-                    logger.info(f"🔄 Client {client_id} already connected. Using existing connection.")
+                    logger.info(f" Client {client_id} already connected. Using existing connection.")
                     return client_id
                 else:
                     # Connection exists but is not active, clean it up
-                    logger.info(f"🔄 Client {client_id} has stale connection. Replacing it.")
+                    logger.info(f" Client {client_id} has stale connection. Replacing it.")
                     await self.disconnect(client_id)
             except Exception as e:
                 logger.error(f"Error checking existing connection for {client_id}: {e}")
@@ -200,7 +183,7 @@ class WebSocketManager:
             "type": "connection_established",
             "client_id": client_id,
             "timestamp": datetime.utcnow().isoformat(),
-            "message": f"🚀 Connected to FinanceGPT Live! ({len(self.active_connections)}/{self.max_connections})"
+            "message": f" Connected to FinanceGPT Live! ({len(self.active_connections)}/{self.max_connections})"
         })
         
         # Send queued messages if any
@@ -226,7 +209,7 @@ class WebSocketManager:
             del self.active_connections[client_id]
             self.stats["active_connections"] = len(self.active_connections)
             
-            logger.info(f"👋 Client {client_id} disconnected. Total: {len(self.active_connections)}")
+            logger.info(f" Client {client_id} disconnected. Total: {len(self.active_connections)}")
             
     async def subscribe(self, client_id: str, topic: str):
         """Subscribe client to a topic"""
@@ -243,7 +226,7 @@ class WebSocketManager:
                 "timestamp": datetime.utcnow().isoformat()
             })
             
-        logger.info(f"📡 Client {client_id} subscribed to {topic}")
+        logger.info(f" Client {client_id} subscribed to {topic}")
         
     async def unsubscribe(self, client_id: str, topic: str):
         """Unsubscribe client from a topic"""
@@ -252,7 +235,7 @@ class WebSocketManager:
             if not self.subscriptions[topic]:
                 del self.subscriptions[topic]
                 
-        logger.info(f"📡 Client {client_id} unsubscribed from {topic}")
+        logger.info(f" Client {client_id} unsubscribed from {topic}")
         
     async def send_personal_message(self, client_id: str, message: dict):
         """Send message to specific client"""
@@ -366,11 +349,11 @@ class WebSocketManager:
                 disconnected_count = await self.cleanup_dead_connections()
                 
                 if disconnected_count > 0:
-                    logger.info(f"🔍 Health check removed {disconnected_count} dead connections")
+                    logger.info(f" Health check removed {disconnected_count} dead connections")
                 
                 # Log stats periodically
                 if len(self.active_connections) > 0:
-                    logger.info(f"� WebSocket Stats: {len(self.active_connections)}/{self.max_connections} active connections")
+                    logger.info(f" WebSocket Stats: {len(self.active_connections)}/{self.max_connections} active connections")
                     
                 # Reduce check frequency when near connection limit
                 if len(self.active_connections) > self.max_connections * 0.8:

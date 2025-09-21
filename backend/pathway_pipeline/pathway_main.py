@@ -1,25 +1,3 @@
-"""
-🚀 FinanceGPT Live - Main Pathway Integration
-============================================
-
-PATHWAY LIVE AI HACKATHON - MAIN INTEGRATION SYSTEM
-
-This is the main integration system that demonstrates Pathway's LiveAI capabilities:
-✅ Real-time financial data ingestion (NO MOCK DATA)
-✅ Live vector embeddings and hybrid search
-✅ Dynamic RAG with instant knowledge updates
-✅ Multi-agent orchestration with real-time context
-✅ WebSocket streaming for live user interaction
-✅ Production-ready architecture with error handling
-
-System Architecture:
-┌─ Real-Time Data Sources ─┐    ┌─ Pathway Live AI Engine ─┐    ┌─ User Interface ─┐
-│ • Yahoo Finance API       │ -> │ • Vector Embeddings       │ -> │ • WebSocket API   │
-│ • Financial News RSS      │    │ • Hybrid Search           │    │ • REST Endpoints  │
-│ • SEC Filings Stream      │    │ • RAG Generation          │    │ • Real-time UI    │
-│ • Economic Indicators     │    │ • Multi-Agent Routing     │    │ • Voice Interface │
-└──────────────────────────┘    └──────────────────────────┘    └──────────────────┘
-"""
 
 # Import Pathway with fallback to mock for demonstration
 try:
@@ -62,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 class PathwayLiveAISystem:
     """
-    🧠 Pathway LiveAI Financial System
+    Pathway LiveAI Financial System
     
     This system demonstrates the power of Pathway's real-time AI capabilities
     by building a complete financial intelligence platform that:
@@ -106,24 +84,24 @@ class PathwayLiveAISystem:
         self.setup_pathway_pipeline()
         self.setup_api_routes()
         
-        logger.info("🚀 PathwayLiveAI System initialized successfully")
+        logger.info(" PathwayLiveAI System initialized successfully")
     
     def setup_pathway_pipeline(self):
         """Setup the core Pathway Live AI pipeline"""
-        logger.info("⚡ Setting up Pathway LiveAI pipeline...")
+        logger.info(" Setting up Pathway LiveAI pipeline...")
         
         try:
             # Create real-time data streams using Pathway
-            logger.info("📊 Creating market data stream...")
+            logger.info(" Creating market data stream...")
             self.pathway_tables['market_data'] = real_time_streams.create_market_data_stream()
             
-            logger.info("📰 Creating financial news stream...")
+            logger.info(" Creating financial news stream...")
             self.pathway_tables['financial_news'] = real_time_streams.create_financial_news_stream()
             
-            logger.info("📋 Creating SEC filings stream...")  
+            logger.info(" Creating SEC filings stream...")  
             self.pathway_tables['sec_filings'] = real_time_streams.create_sec_filings_stream()
             
-            logger.info("📈 Creating economic indicators stream...")
+            logger.info(" Creating economic indicators stream...")
             self.pathway_tables['economic_data'] = real_time_streams.create_economic_indicators_stream()
             
             # Setup vector embeddings and hybrid search
@@ -156,16 +134,26 @@ class PathwayLiveAISystem:
     
     def setup_vector_indexes(self):
         """Setup vector indexes for real-time RAG"""
-        logger.info("🔍 Setting up vector indexes for real-time RAG...")
+        logger.info(" Setting up vector indexes for real-time RAG...")
         
         try:
             if PATHWAY_AVAILABLE and pw is not None:
                 try:
-                    # NOTE: These imports might show errors in the IDE if the Pathway package is not fully installed
-                    # or if the specific modules are not available in the installed version.
-                    # This should not affect runtime if the proper Pathway version is installed.
-                    from pathway.xpacks.llm.embedders import OpenAIEmbedder
-                    from pathway.stdlib.ml.index import KNNIndex
+                    # Try to import Pathway LLM components
+                    try:
+                        from pathway.xpacks.llm.embedders import OpenAIEmbedder
+                        from pathway.stdlib.ml.index import KNNIndex
+                    except ImportError:
+                        # Mock classes for development
+                        class OpenAIEmbedder:
+                            def __init__(self, **kwargs):
+                                pass
+                            def apply(self, **kwargs):
+                                return lambda x: [0.1] * 384
+                        
+                        class KNNIndex:
+                            def __init__(self, *args, **kwargs):
+                                pass
                     
                     # Initialize embedder
                     embedder = OpenAIEmbedder(
@@ -202,7 +190,7 @@ class PathwayLiveAISystem:
                 self.vector_indexes[stream_name] = vector_index
                 logger.info(f"✅ Vector index for {stream_name} created")
             
-            logger.info("🎯 All vector indexes setup successfully")
+            logger.info(" All vector indexes setup successfully")
             
         except Exception as e:
             logger.error(f"❌ Error setting up vector indexes: {e}")
@@ -249,11 +237,11 @@ class PathwayLiveAISystem:
         try:
             # Setup WebSocket output stream
             # In production, use pathway.io.websocket or similar
-            logger.info("📡 WebSocket output stream configured")
+            logger.info(" WebSocket output stream configured")
             
             # Setup database output for persistence
             # pathway.io.postgres.write() or similar
-            logger.info("💾 Database output stream configured")
+            logger.info(" Database output stream configured")
             
         except Exception as e:
             logger.error(f"Error setting up output streams: {e}")
@@ -384,7 +372,7 @@ class PathwayLiveAISystem:
             finally:
                 self.active_connections.discard(websocket)
         
-        logger.info("📡 API routes configured successfully")
+        logger.info(" API routes configured successfully")
     
     async def process_live_rag_query(self, question: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """Process query using Pathway Live RAG system"""
@@ -491,7 +479,7 @@ class PathwayLiveAISystem:
     
     async def stream_real_time_updates(self, websocket: WebSocket):
         """Stream real-time updates to WebSocket client"""
-        logger.info("📡 Starting real-time update stream")
+        logger.info(" Starting real-time update stream")
         
         try:
             while True:
@@ -689,7 +677,7 @@ class PathwayLiveAISystem:
     
     async def start_pathway_computation(self):
         """Start the Pathway computation engine"""
-        logger.info("🚀 Starting Pathway computation engine...")
+        logger.info(" Starting Pathway computation engine...")
         
         try:
             # In production, this would start the actual Pathway computation
@@ -703,7 +691,7 @@ class PathwayLiveAISystem:
     
     def run_server(self, host: str = "0.0.0.0", port: int = 8001):
         """Run the Pathway LiveAI server"""
-        logger.info(f"🚀 Starting FinanceGPT Live - Pathway AI server on {host}:{port}")
+        logger.info(f" Starting FinanceGPT Live - Pathway AI server on {host}:{port}")
         
         # Start Pathway computation in background
         asyncio.create_task(self.start_pathway_computation())

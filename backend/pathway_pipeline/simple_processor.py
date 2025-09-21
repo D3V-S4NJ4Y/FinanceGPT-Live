@@ -1,9 +1,3 @@
-"""
-🔥 Simple Real-Time Stream Processor (Temporary)
-===============================================
-Simplified real-time financial data streaming without complex dependencies.
-"""
-
 import asyncio
 import yfinance as yf
 from typing import Dict, List, Any, Optional
@@ -17,16 +11,6 @@ logger = logging.getLogger(__name__)
 settings = get_settings()
 
 class FinanceStreamProcessor:
-    """
-    🚀 Simple Real-Time Financial Stream Processor
-    
-    Features:
-    - Real-time market data streaming
-    - Basic news simulation
-    - Agent coordination
-    - Database integration
-    """
-    
     def __init__(self, websocket_manager=None, db_manager=None):
         self.websocket_manager = websocket_manager
         self.db_manager = db_manager
@@ -40,12 +24,12 @@ class FinanceStreamProcessor:
             "META", "NVDA", "NFLX", "SPY", "QQQ"
         ]
         
-        logger.info("🔥 FinanceStreamProcessor initialized")
+        logger.info(" FinanceStreamProcessor initialized")
     
     def register_agent(self, name: str, agent):
         """Register an agent for real-time updates"""
         self.agents[name] = agent
-        logger.info(f"🤖 Agent '{name}' registered for streaming updates")
+        logger.info(f" Agent '{name}' registered for streaming updates")
     
     async def start(self):
         """Start the streaming pipeline"""
@@ -53,7 +37,7 @@ class FinanceStreamProcessor:
             logger.warning("⚠️ Stream processor already running")
             return
             
-        logger.info("🚀 Starting production streaming pipeline...")
+        logger.info(" Starting production streaming pipeline...")
         
         try:
             # Start market data streaming
@@ -77,7 +61,7 @@ class FinanceStreamProcessor:
     
     async def stop(self):
         """Stop the streaming pipeline"""
-        logger.info("⏹️ Stopping streaming pipeline...")
+        logger.info(" Stopping streaming pipeline...")
         
         self.is_running = False
         
@@ -94,10 +78,10 @@ class FinanceStreamProcessor:
     
     async def _stream_market_data(self):
         """Stream real-time market data"""
-        logger.info("🎯 Starting market data streaming loop...")
+        logger.info(" Starting market data streaming loop...")
         while self.is_running:
             try:
-                logger.info(f"📊 Processing {len(self.tracked_symbols)} symbols...")
+                logger.info(f" Processing {len(self.tracked_symbols)} symbols...")
                 # Get market data for tracked symbols
                 for symbol in self.tracked_symbols:
                     try:
@@ -109,7 +93,7 @@ class FinanceStreamProcessor:
                             await self._handle_market_data_update(market_data)
                         else:
                             # Generate realistic mock data as fallback
-                            logger.info(f"📊 Using mock data for {symbol} (API unavailable)")
+                            logger.info(f" Using mock data for {symbol} (API unavailable)")
                             mock_data = self._generate_realistic_mock_data(symbol)
                             logger.info(f"✅ Broadcasting mock data for {symbol}: ${mock_data['price']} ({mock_data['change_percent']:+.2f}%)")
                             await self._handle_market_data_update(mock_data)
@@ -337,7 +321,7 @@ class FinanceStreamProcessor:
                         timeout=5.0  # 5 second timeout
                     )
                 except asyncio.TimeoutError:
-                    logger.warning(f"⏰ Timeout fetching data for {symbol}")
+                    logger.warning(f" Timeout fetching data for {symbol}")
                     return None
             
             if hist_data is None or len(hist_data) == 0:
@@ -381,7 +365,7 @@ class FinanceStreamProcessor:
             }
             
         except Exception as e:
-            logger.debug(f"📊 YFinance error for {symbol}: {e}")
+            logger.debug(f" YFinance error for {symbol}: {e}")
             return None
     
     def _generate_realistic_mock_data(self, symbol: str) -> Dict[str, Any]:

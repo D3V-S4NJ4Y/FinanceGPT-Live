@@ -1,9 +1,3 @@
-"""
-📊 Analytics API Routes
-======================
-Advanced financial analytics and insights
-"""
-
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional, Dict, Any
 import numpy as np
@@ -20,9 +14,6 @@ async def get_portfolio_performance(
     portfolio_id: str = Query("main", description="Portfolio identifier"),
     period: str = Query("1mo", description="Analysis period: 1d,1w,1mo,3mo,6mo,1y")
 ):
-    """
-    📈 Get comprehensive portfolio performance analytics - REAL DATA ONLY
-    """
     try:
         # Check if we have real portfolio data
         import json
@@ -43,9 +34,6 @@ async def get_portfolio_performance(
 
 @router.get("/portfolio/risk")
 async def get_portfolio_risk_analytics(portfolio_id: str = Query("main")):
-    """
-    🚨 Get comprehensive portfolio risk analytics - REAL DATA ONLY
-    """
     try:
         # Only return risk data if we have real portfolio positions
         # For now, return empty response to indicate no real risk data
@@ -65,11 +53,6 @@ async def get_market_correlation_analysis(
     symbols: str = Query(..., description="Comma-separated symbols"),
     period: str = Query("6mo", description="Analysis period")
 ):
-    """
-    🔗 Get correlation analysis between assets using real market data
-    
-    Returns correlation matrix, clustering, and diversification metrics
-    """
     try:
         import yfinance as yf
         
@@ -211,11 +194,6 @@ async def get_sentiment_analysis(
     symbols: Optional[str] = Query(None, description="Symbols to analyze"),
     sources: str = Query("all", description="Sentiment sources: news,social,analyst")
 ):
-    """
-    😊 Get comprehensive sentiment analysis
-    
-    Returns sentiment scores from multiple sources and aggregated insights
-    """
     try:
         from ..routes.market_data import get_latest_market_data
         
@@ -345,11 +323,6 @@ async def get_technical_indicators(
     symbol: str,
     indicators: str = Query("sma,ema,rsi,macd", description="Comma-separated indicators")
 ):
-    """
-    📊 Get technical indicators for a symbol
-    
-    Returns various technical analysis indicators and signals based on real market data
-    """
     try:
         from ..routes.market_data import get_latest_market_data
         import yfinance as yf

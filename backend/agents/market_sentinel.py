@@ -1,12 +1,3 @@
-"""
-🤖 Market Sentinel Agent
-========================
-
-Advanced AI agent for real-time market monitoring and analysis.
-Provides intelligent market surveillance with ML-powered insights.
-
-"""
-
 import asyncio
 import numpy as np
 import pandas as pd
@@ -75,20 +66,7 @@ class MarketAnalysis:
             'timestamp': self.timestamp.isoformat()
         }
 
-class MarketSentinelAgent(BaseAgent):
-    """
-    🎯 Market Sentinel - Advanced Market Monitoring Agent
-    
-    Capabilities:
-    - Real-time price monitoring with anomaly detection
-    - Technical analysis with 20+ indicators
-    - Volume analysis and unusual activity detection
-    - Support/resistance level identification
-    - Trend analysis and momentum tracking
-    - Risk assessment and alert generation
-    - Multi-timeframe analysis
-    """
-    
+class MarketSentinelAgent(BaseAgent):    
     def __init__(self):
         super().__init__(
             name="MarketSentinel",
@@ -424,7 +402,7 @@ class MarketSentinelAgent(BaseAgent):
                 recent_prices[i] > recent_prices[i+1]):
                 highs.append(recent_prices[i])
             elif (recent_prices[i] < recent_prices[i-1] and 
-                  recent_prices[i] < recent_prices[i+1]):
+                recent_prices[i] < recent_prices[i+1]):
                 lows.append(recent_prices[i])
         
         resistance = np.mean(highs) if highs else max(recent_prices)
@@ -433,8 +411,8 @@ class MarketSentinelAgent(BaseAgent):
         return support, resistance
     
     def _determine_market_condition(self, current_price: float, sma_20: float, 
-                                  sma_50: float, rsi: float, macd: float, 
-                                  signal: float) -> MarketCondition:
+        sma_50: float, rsi: float, macd: float, 
+        signal: float) -> MarketCondition:
         """Determine overall market condition"""
         bullish_signals = 0
         bearish_signals = 0
@@ -496,9 +474,9 @@ class MarketSentinelAgent(BaseAgent):
         return momentum
     
     def _generate_recommendation(self, condition: MarketCondition, rsi: float,
-                               macd: float, signal: float, price: float,
-                               sma_20: float, bb_upper: float, bb_lower: float,
-                               volume_ratio: float) -> Tuple[str, float]:
+        macd: float, signal: float, price: float,
+        sma_20: float, bb_upper: float, bb_lower: float,
+        volume_ratio: float) -> Tuple[str, float]:
         """Generate trading recommendation with confidence"""
         
         score = 0

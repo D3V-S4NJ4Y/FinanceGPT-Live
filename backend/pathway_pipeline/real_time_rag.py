@@ -1,9 +1,3 @@
-"""
-🧠 Real-Time RAG (Retrieval-Augmented Generation)
-=================================================
-Advanced financial knowledge retrieval and generation system
-"""
-
 import asyncio
 import logging
 from typing import Dict, List, Any, Optional
@@ -16,16 +10,6 @@ import pathway as pw
 logger = logging.getLogger(__name__)
 
 class RealTimeRAG:
-    """
-    🎯 Real-Time RAG System for Financial Intelligence
-    
-    Features:
-    - Dynamic knowledge base updates
-    - Real-time document ingestion
-    - Context-aware query processing
-    - Financial domain expertise
-    - Multi-modal data support
-    """
     
     def __init__(self, stream_processor):
         self.stream_processor = stream_processor
@@ -46,7 +30,7 @@ class RealTimeRAG:
         
     def _initialize_knowledge_base(self):
         """Initialize the financial knowledge base"""
-        logger.info("🧠 Initializing financial knowledge base...")
+        logger.info("Initializing financial knowledge base...")
         
         try:
             # Core financial concepts
@@ -189,7 +173,7 @@ class RealTimeRAG:
                     "relevance_score": 0.9
                 })
                 
-            logger.info(f"📖 Retrieved {len(relevant_items)} knowledge items")
+            logger.info(f" Retrieved {len(relevant_items)} knowledge items")
             return relevant_items
             
         except Exception as e:
@@ -348,7 +332,7 @@ class RealTimeRAG:
             if isinstance(new_data, dict):
                 self.knowledge_base[category].update(new_data)
                 
-            logger.info(f"📚 Updated knowledge base category: {category}")
+            logger.info(f" Updated knowledge base category: {category}")
             
         except Exception as e:
             logger.error(f"❌ Knowledge update error: {e}")

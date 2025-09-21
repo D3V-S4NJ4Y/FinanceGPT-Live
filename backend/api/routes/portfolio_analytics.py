@@ -1,9 +1,3 @@
-"""
-📊 Portfolio Analytics API Routes
-================================
-Real-time portfolio analysis and risk management
-"""
-
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
@@ -29,9 +23,6 @@ class PortfolioRequest(BaseModel):
 
 @router.post("/analytics")
 async def get_portfolio_analytics(request: PortfolioRequest):
-    """
-    📈 Comprehensive portfolio analytics with real market data
-    """
     try:
         if not request.holdings:
             raise HTTPException(status_code=400, detail="No holdings provided")
@@ -39,13 +30,13 @@ async def get_portfolio_analytics(request: PortfolioRequest):
         # Get real-time market data from our corrected endpoint
         from .market_data import get_latest_market_data
         
-        logger.info(f"📊 Analyzing portfolio with {len(request.holdings)} holdings")
+        logger.info(f" Analyzing portfolio with {len(request.holdings)} holdings")
         
         # Get current market data for all symbols
         market_stocks = await get_latest_market_data()
         market_data = {stock['symbol']: stock for stock in market_stocks}
         
-        logger.info(f"📈 Retrieved market data for: {list(market_data.keys())}")
+        logger.info(f" Retrieved market data for: {list(market_data.keys())}")
         
         # Calculate portfolio metrics
         portfolio_metrics = {
@@ -81,7 +72,7 @@ async def get_portfolio_analytics(request: PortfolioRequest):
             total_return_percent = (total_return / cost_basis * 100) if cost_basis > 0 else 0.0
             position_day_change = shares * day_change
             
-            logger.info(f"💰 {symbol}: {shares} shares @ ${current_price} = ${market_value:.2f}")
+            logger.info(f" {symbol}: {shares} shares @ ${current_price} = ${market_value:.2f}")
             
             # Add to portfolio totals
             portfolio_metrics['total_value'] += market_value
@@ -211,9 +202,6 @@ async def get_symbol_performance(
     symbol: str,
     period: str = Query("1y", description="Period: 1d,5d,1mo,3mo,6mo,1y,2y,5y")
 ):
-    """
-    📊 Get detailed performance metrics for a specific symbol
-    """
     try:
         ticker = yf.Ticker(symbol.upper())
         hist = ticker.history(period=period)
@@ -279,9 +267,6 @@ async def get_benchmark_comparison(
     symbols: str = Query(..., description="Comma-separated symbols"),
     benchmark: str = Query("SPY", description="Benchmark symbol")
 ):
-    """
-    📈 Compare portfolio symbols against benchmark
-    """
     try:
         symbol_list = [s.strip().upper() for s in symbols.split(",")]
         all_symbols = symbol_list + [benchmark.upper()]

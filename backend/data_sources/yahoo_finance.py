@@ -1,12 +1,3 @@
-"""
-📊 Yahoo Finance Data Connector
-===============================
-
-High-performance connector for real-time and historical market data from Yahoo Finance.
-Provides streaming capabilities with advanced caching and error handling.
-
-"""
-
 import asyncio
 import aiohttp
 import yfinance as yf
@@ -66,17 +57,6 @@ class HistoricalData:
         }
 
 class YahooFinanceConnector:
-    """
-    🚀 High-Performance Yahoo Finance Data Connector
-    
-    Features:
-    - Real-time market data streaming
-    - Historical data with multiple timeframes
-    - Advanced caching and rate limiting
-    - Websocket integration for live feeds
-    - Error handling and automatic retry logic
-    - Multiple symbol support with batch processing
-    """
     
     def __init__(self):
         self.base_url = "https://query1.finance.yahoo.com"
@@ -98,7 +78,7 @@ class YahooFinanceConnector:
     
     async def start(self):
         """Start the data connector"""
-        logger.info("🚀 Starting Yahoo Finance connector...")
+        logger.info(" Starting Yahoo Finance connector...")
         
         self.session = aiohttp.ClientSession(
             timeout=aiohttp.ClientTimeout(total=30),
@@ -117,7 +97,7 @@ class YahooFinanceConnector:
     
     async def stop(self):
         """Stop the data connector"""
-        logger.info("🛑 Stopping Yahoo Finance connector...")
+        logger.info(" Stopping Yahoo Finance connector...")
         
         self.is_streaming = False
         
@@ -433,7 +413,7 @@ class YahooFinanceConnector:
     
     async def _streaming_loop(self):
         """Main streaming loop for real-time data"""
-        logger.info("🔄 Starting streaming loop...")
+        logger.info(" Starting streaming loop...")
         
         while self.is_streaming:
             try:

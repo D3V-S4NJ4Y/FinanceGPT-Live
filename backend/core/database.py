@@ -1,9 +1,3 @@
-"""
-🛡️ Core Database Manager
-========================
-Production-ready database interface with connection pooling and async support
-"""
-
 import asyncio
 import aiopg
 import psycopg2
@@ -20,15 +14,6 @@ from .config import settings
 logger = logging.getLogger(__name__)
 
 class DatabaseManager:
-    """
-    🎯 Production Database Manager
-    
-    Features:
-    - Async connection pooling
-    - Real-time data storage
-    - Query optimization
-    - Connection health monitoring
-    """
     
     def __init__(self):
         self.engine = None
@@ -157,7 +142,7 @@ class DatabaseManager:
             logger.error(f"❌ Database initialization failed: {e}")
             # Fall back to SQLite if PostgreSQL fails
             try:
-                logger.info("🔄 Falling back to SQLite database...")
+                logger.info(" Falling back to SQLite database...")
                 sqlite_url = "sqlite+aiosqlite:///./financegpt.db"
                 self.async_engine = create_async_engine(
                     sqlite_url,
@@ -189,7 +174,7 @@ class DatabaseManager:
                 logger.error(f"❌ SQLite fallback also failed: {fallback_error}")
                 # Try with even more basic SQLite configuration
                 try:
-                    logger.info("🔄 Trying basic SQLite with WAL mode...")
+                    logger.info(" Trying basic SQLite with WAL mode...")
                     sqlite_url = "sqlite+aiosqlite:///./financegpt.db?check_same_thread=false"
                     self.async_engine = create_async_engine(
                         sqlite_url,
@@ -292,7 +277,7 @@ class DatabaseManager:
                 
             except Exception as e:
                 if "database is locked" in str(e).lower() and attempt < max_retries - 1:
-                    logger.warning(f"🔄 Database locked, retrying ({attempt + 1}/{max_retries})...")
+                    logger.warning(f" Database locked, retrying ({attempt + 1}/{max_retries})...")
                     await asyncio.sleep(retry_delay * (attempt + 1))  # Exponential backoff
                     continue
                 else:
@@ -317,7 +302,7 @@ class DatabaseManager:
                 
             except Exception as e:
                 if "database is locked" in str(e).lower() and attempt < max_retries - 1:
-                    logger.warning(f"🔄 Database locked, retrying AI signal ({attempt + 1}/{max_retries})...")
+                    logger.warning(f" Database locked, retrying AI signal ({attempt + 1}/{max_retries})...")
                     await asyncio.sleep(retry_delay * (attempt + 1))  # Exponential backoff
                     continue
                 else:
@@ -455,7 +440,7 @@ class DatabaseManager:
                 
             except Exception as e:
                 if "database is locked" in str(e).lower() and attempt < max_retries - 1:
-                    logger.warning(f"🔄 Database locked, retrying alert insert ({attempt + 1}/{max_retries})...")
+                    logger.warning(f" Database locked, retrying alert insert ({attempt + 1}/{max_retries})...")
                     await asyncio.sleep(retry_delay * (attempt + 1))
                     continue
                 else:

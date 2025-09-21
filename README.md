@@ -221,7 +221,7 @@
     └── validators.py            # Data validation
 ```
 
-### **🔄 Data Flow Architecture**
+### ** Data Flow Architecture**
 
 #### **Real-Time Market Data Flow**
 ```
@@ -277,65 +277,6 @@ http://127.0.0.1:8001/
 └── docs                        # GET: Interactive API docs
 ```
 
-## 🛠️ Current Technology Stack
-
-### **Frontend (React + TypeScript)**
-```bash
-✅ React 18.2.0                 # Modern UI library - WORKING
-✅ TypeScript 5.0               # Type-safe development - WORKING  
-✅ Vite 5.4.19                 # Lightning-fast build tool - WORKING
-✅ Tailwind CSS 3.3.0          # Utility-first CSS - WORKING
-✅ Three.js + React Three Fiber # 3D visualizations - WORKING
-✅ Lucide React Icons          # Modern icon library - WORKING
-✅ WebSocket Client            # Real-time communication - WORKING
-```
-
-### **Backend (Python + FastAPI)**
-```bash
-✅ Python 3.11+                # Core language - WORKING
-✅ FastAPI 0.104.1             # Modern async web framework - WORKING
-✅ Uvicorn 0.24.0              # ASGI server - WORKING
-✅ Pandas 2.1.3                # Data manipulation - WORKING
-✅ NumPy 1.25.2                # Numerical computing - WORKING
-✅ SQLAlchemy 2.0.23           # Database ORM - WORKING
-✅ WebSockets 12.0             # Real-time communication - WORKING
-✅ Pydantic 2.5.0              # Data validation - WORKING
-```
-
-### **Data Sources (Live & Active)**
-```bash
-✅ Finnhub API                 # Primary market data - API KEY WORKING
-✅ Yahoo Finance (yFinance)     # Backup market data - WORKING
-✅ Real-time WebSocket feeds    # Live data streaming - WORKING
-✅ Intelligent fallback system # Multiple data source reliability - WORKING
-```
-
-### **AI & Machine Learning (Functional)**
-```bash
-✅ Custom NLP Engine           # News sentiment analysis - WORKING
-✅ Technical Analysis (TA)     # Financial indicators - WORKING  
-✅ Scikit-learn 1.3.2         # Machine learning models - WORKING
-✅ Real-time signal generation # Trading signals - WORKING
-✅ Multi-agent system         # 6 AI agents active - WORKING
-```
-
-### **Database & Storage (Active)**
-```bash
-✅ SQLite (Development)       # Local database - WORKING
-✅ In-memory caching         # Fast data access - WORKING
-✅ Shared data store         # Centralized data management - WORKING
-```
-
-### **Development Tools (Verified)**
-```bash
-✅ VS Code integration       # Full IDE support - WORKING
-✅ Hot reload (Vite)         # Instant development updates - WORKING
-✅ TypeScript error checking # Real-time error detection - WORKING
-✅ ESLint + Prettier         # Code formatting - WORKING
-```
-
----
-
 ## ⚙️ Installation & Setup
 
 ```bash
@@ -347,99 +288,138 @@ http://127.0.0.1:8001/
 ✅ VS Code (Recommended)     # Full IDE integration
 ```
 
-### Quick Start (5-Minute Setup)
+## Quick Start (5-Minute Setup)
 
-#### 1️⃣ **Clone Repository**
+### 1️⃣ **Clone Repository**
 ```bash
 git clone https://github.com/D3V-S4NJ4Y/FinanceGPT-Live.git
+```
+
+```bash
 cd FinanceGPT-Live
 ```
 
-#### 2️⃣ **Backend Setup**
+### 2️⃣ **Backend Setup**
+
+#### Navigate to backend
 ```bash
-# Navigate to backend
 cd backend
-
-# Create virtual environment  
-python -m venv venv
-venv\Scripts\activate          # Windows
-# source venv/bin/activate     # Mac/Linux
-
-# Install dependencies (all verified working)
-pip install -r requirements.txt
-
 ```
-#### 3️⃣ **Environment Setup**
+
+#### Create virtual environment 
 ```bash
-# Create environment file with working API key
-# Website: https://www.alphavantage.co/products/alpha-vantage
-# Website: https://www.finnhub.io/
-# Website: https://newsapi.org/
-# Website: https://openai.com/api-keys
+python -m venv venv
+```
 
+```bash
+venv\Scripts\activate
+```
 
-# 1. Copy environment template
+#### Install dependencies (all verified working)
+```bash
+pip install -r requirements.txt
+```
+
+## 3️⃣ **Environment Setup**
+#### Create environment file with working API key
+
+#### Navigate to root directory
+```bash
+cd ..
+```
+
+#### Copy environment template
+```bash
 cp .env.example .env
+```
+#### Replace YOUR_API_KEY with your actual API keys of environment variables
 
-# Required for market data
-echo ALPHA_VANTAGE_KEY="YOUR_API_KEY" >> .env
-echo FINNHUB_KEY="YOUR_API_KEY" >> .env
+#### Website: https://www.alphavantage.co/support/#api-key
+```bash
+ALPHA_VANTAGE_KEY="YOUR_API_KEY"
+```
+#### Website: https://www.finnhub.io/
+```bash
+FINNHUB_KEY="YOUR_API_KEY"
+```
+#### Website: https://newsapi.org/
+```bash
+NEWS_API_KEY="YOUR_API_KEY"
+```
+#### Website: https://openai.com/api/
+```bash
+OPENAI_API_KEY="YOUR_API_KEY"
+```
 
-# Required for news analysi
-ccho NEWS_API_KEY="YOUR_API_KEY" >> .env
-
-# Required for AI features
-echo OPENAI_API_KEY="YOUR_API_KEY" >> .env
-
-# Optional: For advanced features
+#### Optional: For advanced features
+```bash
 PATHWAY_LICENSE_KEY="your-pathway-license"
 ```
 
-#### 4️⃣ **Frontend Setup**
+## 4️⃣ **Frontend Setup**
+#### Navigate to frontend
 ```bash
-# Navigate to frontend
 cd frontend
-
-# Install dependencies (all compatible versions)
-npm install
-
-# Verify installation  
-npm run build
-# Should complete without error
 ```
 
-#### 5️⃣ **Start Server**
-
-**Terminal 1: Backend Server**
+### Install dependencies (all compatible versions)
 
 ```bash
-# In backend directory
+npm install
+```
+```bash
+npm audit fix
+```
+#### Verify installation  
+```bash
+npm run build
+```
+#### Should complete without error
+
+## 5️⃣ **Start FinanceGPT-Live**
+
+**Terminal 1: Backend Server**
+#### Negivate to root directory
+```bash
+cd FinanceGPT-Live
+```
+```bash
 cd backend
+```
 
-# Activate environment
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # macOS/Linux
-
+#### Activate environment
+```bash
+venv\Scripts\activate
+```
+```bash
 python -m uvicorn main:app --host 127.0.0.1 --port 8001
-
+```
+```bash
 # Expected output:
 # ✅ Environment variables loaded from .env
 # ✅ Real Pathway RAG loaded successfully  
 # ✅ Enhanced AI agents loaded
 # ✅ Real-time news routes loaded
-# 🚀 Server running on http://0.0.0.0:8001
+#  Server running on http://127.0.0.1:8001
 ```
 
 **Terminal 2: Frontend Server**
+#### Navigate to root directory
 ```bash
-# Navigate to frontend
+cd FinanceGPT-Live
+```
+```bash
 cd frontend
+```
 
-# Run the development server
+#### Run the development server
+```bash
 npm run dev
-
+```
+```bash
 # Expected output:
 # ✅ Local:   http://127.0.0.1:3000/
+# Please Wait while loading market data...
 ```
 
 #### 6️⃣ **Accessing the Application**
@@ -489,7 +469,7 @@ curl "http://127.0.0.1:8001/api/market/latest"
 
 ---
 
-## 🎮 Usage Guide
+## Usage Guide
 
 ### **1. Command Center Dashboard**
 - **Access**: Main landing page at `http://localhost:3000`
@@ -550,7 +530,7 @@ Earnings Reports:    Real-time earnings announcements and analysis
 Global Markets:      International market news and forex updates
 ```
 
-### 🤖 **AI Assistant** - Your Personal Financial Advisor
+###  **AI Assistant** - Your Personal Financial Advisor
 - **Access**: Click "AI Assistant" tab
 - **Chatbot**: Engaging conversation with AI
 - **Stock Recommendations**: AI-generated stock recommendations
@@ -704,11 +684,11 @@ curl -X GET "http://127.0.0.1:8001/api/agents/status" \
 ```
 ---
 
-## 🎉 Final Notes*
+## Final Notes
 
 This FinanceGPT-Live platform represents a complete, working financial analysis system with real-time data, AI intelligence, and comprehensive market tools. Every feature documented in this README is currently operational and tested. The platform is designed to be easily integrated into existing financial applications, providing a robust and versatile solution for financial analysis and decision-making.
 
-## 🔮 Roadmap
+## Roadmap
 
 ### **Version 2.1.0** (Next Release)
 - [ ] Options trading analysis
@@ -738,13 +718,13 @@ This FinanceGPT-Live platform represents a complete, working financial analysis 
 
 </div>
 
-#### **🚀 Core Development Team**
+#### ** Core Development Team**
 - **[Tushar Sahu](https://github.com/sahutushar)** - *Lead Full-Stack Developer*
   - Backend Architecture & API Development
   - Database Design & Optimization
   - System Integration & DevOps
 
-#### * AI/ML Engineering Team**  
+#### ** AI/ML Engineering Team**  
 - **[Sanjay Kumar](https://github.com/D3V-S4NJ4Y)** - *AI/ML Engineer & Project Lead*
   - Machine Learning Models & Algorithms
   - Trading Signals & Predictive Analytics

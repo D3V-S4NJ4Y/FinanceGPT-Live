@@ -1,9 +1,3 @@
-"""
-🧠 Advanced LLM Engine with Financial Intelligence
-================================================
-Sophisticated AI reasoning with access to all financial data sources
-"""
-
 import asyncio
 import json
 import numpy as np
@@ -541,11 +535,11 @@ class AdvancedLLMEngine:
             confidence = step['confidence']
             
             if step_type == 'price_analysis':
-                response_parts.append(f"📊 **Price Analysis**: {findings['summary']}")
+                response_parts.append(f" **Price Analysis**: {findings['summary']}")
                 
             elif step_type == 'technical_patterns':
                 if findings['patterns_found']:
-                    response_parts.append(f"📈 **Technical Patterns**: {findings['summary']}")
+                    response_parts.append(f" **Technical Patterns**: {findings['summary']}")
                     for signal in findings['signals'][:3]:  # Top 3 signals
                         response_parts.append(f"  • {signal}")
                         
@@ -555,12 +549,12 @@ class AdvancedLLMEngine:
                     response_parts.append(f"  • {rec}")
                     
             elif step_type == 'market_context':
-                response_parts.append(f"🌍 **Market Context**: {findings['regime']} regime detected")
+                response_parts.append(f" **Market Context**: {findings['regime']} regime detected")
                 for factor in findings['key_factors'][:2]:
                     response_parts.append(f"  • {factor}")
                     
             elif step_type == 'predictions':
-                response_parts.append("🔮 **AI Predictions**:")
+                response_parts.append(" **AI Predictions**:")
                 for symbol, pred in list(findings['short_term'].items())[:3]:
                     confidence = findings['confidence_levels'].get(symbol, 60)
                     response_parts.append(f"  • {symbol}: {pred['direction']} {pred['magnitude']} (confidence: {confidence}%)")
@@ -569,7 +563,7 @@ class AdvancedLLMEngine:
         final_response = "\n".join(response_parts)
         
         # Add actionable recommendations
-        final_response += "\n\n💡 **Key Takeaways**:"
+        final_response += "\n\n **Key Takeaways**:"
         
         # Extract key insights
         if any('bullish' in str(step['findings']) for step in reasoning_steps):

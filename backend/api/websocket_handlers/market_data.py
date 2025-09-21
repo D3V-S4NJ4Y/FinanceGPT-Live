@@ -1,9 +1,3 @@
-"""
-📈 Market Data WebSocket Handler
-==============================
-Real-time market data provider for FinanceGPT Live via WebSockets
-"""
-
 import asyncio
 import json
 import logging
@@ -18,17 +12,6 @@ from api.websocket import WebSocketManager
 logger = logging.getLogger(__name__)
 
 class MarketDataHandler:
-    """
-    Handler for real-time market data WebSocket messages
-    
-    Features:
-    - Symbol subscription management
-    - Real-time market data streaming
-    - Market indices updates
-    - Trading volume updates
-    - Technical indicators streaming
-    """
-    
     def __init__(self, websocket_manager: WebSocketManager):
         self.websocket_manager = websocket_manager
         self.active_subscriptions: Dict[str, Dict[str, Any]] = {}
