@@ -315,7 +315,7 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-#### Install dependencies (all verified working)
+#### Install dependencies (Please wait for it to finish, it may take a long time.)
 ```bash
 pip install -r requirements.txt
 ```
@@ -447,7 +447,7 @@ curl "http://127.0.0.1:8001/api/market/latest"
 
 #### **Test Frontend**
 ```bash
-# Open browser to http://127.0.0.1:3000
+# Open browser to http://127.0.0.1:3000 (please wait while market data is loading...)
 # You should see:
 # ✅ Command Center with live stock data
 # ✅ Market overview cards with real prices  
